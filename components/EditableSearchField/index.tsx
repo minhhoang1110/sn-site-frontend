@@ -1,10 +1,25 @@
-import React, { useState } from "react";
+/* eslint-disable react-hooks/exhaustive-deps */
+import React, { useEffect, useState } from "react";
 import TextField from "../TextField";
 import { User } from "@/types/DataObject";
+import { SearchObj } from "@/types/common";
+import { UserAPI } from "@/api";
+import { useAuthentication } from "@/hooks";
+import Link from "next/link";
+import Avatar from "../Avatar";
 interface Props {}
 const EditableSearchField: React.FC<Props> = ({}) => {
+  const { session } = useAuthentication();
+  const initValue: SearchObj = {
+    keyword: "",
+  };
+  const [values, setValues] = useState<SearchObj>(initValue);
   const [isOpenSearchResult, setIsOpenSearchResult] = useState<boolean>(false);
   const [users, setUsers] = useState<User[]>([]);
+  const handleClickSearchResult = () => {
+    setIsOpenSearchResult(false);
+    setValues(initValue);
+  };
   const searchResult = (): JSX.Element[] | JSX.Element | null => {
     let html: JSX.Element[] | JSX.Element | null = null;
     if (users.length === 0)
@@ -13,8 +28,46 @@ const EditableSearchField: React.FC<Props> = ({}) => {
           Không có kết quả tìm kiếm nào gần đây
         </div>
       );
+
+    html = users.map((user, index) => {
+      return (
+        <div key={index} onClick={handleClickSearchResult}>
+          <Link
+            href={
+              user.id == session?.user?.id ? "/profile" : `/profile/${user.id}`
+            }
+            className="flex items-center bg-white hover:bg-gray-300 rounded-md p-2 my-2"
+          >
+            <Avatar
+              url={user.avatarUrl || ""}
+              size="md"
+              placeholder={
+                (user &&
+                  `${user.firstName.substring(0, 1)} ${user.lastName.substring(
+                    0,
+                    1
+                  )}`) ||
+                ""
+              }
+            />
+            <div className="ml-2 text-left font-bold">
+              {(user && `${user.firstName} ${user.lastName}`) || ""}
+            </div>
+          </Link>
+        </div>
+      );
+    });
     return html;
   };
+  useEffect(() => {
+    if (values.keyword) {
+      UserAPI.getListUser(values, session?.accessToken || "").then((res) => {
+        if (res.data.success) {
+          setUsers(res.data.data || []);
+        }
+      });
+    }
+  }, [values]);
   return (
     <div className="w-full max-w-3xl relative my-0 mx-auto">
       <div className="w-full">
@@ -22,7 +75,7 @@ const EditableSearchField: React.FC<Props> = ({}) => {
           readOnly={false}
           fontSize="text-base"
           hasBorder={true}
-          id="search"
+          id="keyword"
           placeholder="Tìm kiếm trên SN Site"
           icon="search"
           required={false}
@@ -32,9 +85,9 @@ const EditableSearchField: React.FC<Props> = ({}) => {
           padding="sm"
           background="bg-gray-300"
           focusEvent={() => setIsOpenSearchResult(true)}
-          blurEvent={() => setIsOpenSearchResult(false)}
-          values={null}
-          setValues={null}
+          blurEvent={() => !values.keyword && setIsOpenSearchResult(false)}
+          values={values}
+          setValues={setValues}
         />
       </div>
       <div

@@ -67,6 +67,14 @@ const DropdownMenu: React.FC<Props> = ({ user }) => {
           </li>
           <li className="mb-2">
             <Link
+              href="/requested-friend"
+              className="flex items-center p-2 bg-white hover:bg-gray-300 rounded-md "
+            >
+              <span className="font-bold p-1">Lời mời kết bạn</span>
+            </Link>
+          </li>
+          <li className="mb-2">
+            <Link
               href=""
               className="flex items-center p-2 bg-white hover:bg-gray-300 rounded-md "
               onClick={handleLogout}

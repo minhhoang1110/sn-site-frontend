@@ -33,10 +33,10 @@ const RefreshToken = (error: any) => {
         dispatch(
           authenticationAction.setValueToStore(res.data.data as UserWithToken)
         );
-        error.config.headers = {
-          Authorization: res.data.data.accessToken as string,
-        };
-        return axios(error.config);
+        // error.config.headers = {
+        //   Authorization: res.data.data.accessToken as string,
+        // };
+        // return axios(error.config);
       }
       logout();
       return;

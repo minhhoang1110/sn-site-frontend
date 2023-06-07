@@ -12,7 +12,8 @@ const usePosts = () => {
     userId: "",
   });
   const loadPosts = () => {
-    PostAPI.getListPost(postsParams, session?.accessToken || "")
+    if (!session || !session.accessToken) return;
+    PostAPI.getListPost(postsParams, session.accessToken || "")
       .then((res) => {
         if (res.data.success) {
           setPosts(res.data.data as Post[]);

@@ -6,3 +6,6 @@ export interface TabData {
   text: string;
   paramValue: string;
 }
+export interface SearchObj {
+  keyword: string;
+}

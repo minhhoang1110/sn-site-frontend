@@ -9,7 +9,8 @@ const useCurrentProfile = () => {
   const [loadingProfile, setLoadingProfile] = useState<boolean>(true);
   const { session } = useAuthentication();
   const loadProfile = () => {
-    UserAPI.currentProfile(session?.accessToken || "")
+    if (!session || !session.accessToken) return;
+    UserAPI.currentProfile(session.accessToken || "")
       .then((res) => {
         if (res.data.success) {
           setProfile(res.data.data as User);

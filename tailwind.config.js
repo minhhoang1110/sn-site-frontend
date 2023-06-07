@@ -33,6 +33,7 @@ module.exports = {
         "184px": "184px",
         "240px": "240px",
         "156px": "156px",
+        "300px": "300px",
       },
       minWidth: {
         "120px": "120px",
@@ -40,6 +41,7 @@ module.exports = {
         "184px": "184px",
         "240px": "240px",
         "156px": "156px",
+        "300px": "300px",
       },
       maxHeight: {
         "120px": "120px",
@@ -47,6 +49,7 @@ module.exports = {
         "184px": "184px",
         "240px": "240px",
         "156px": "156px",
+        "300px": "300px",
       },
       minHeight: {
         "120px": "120px",
@@ -54,6 +57,7 @@ module.exports = {
         "184px": "184px",
         "240px": "240px",
         "156px": "156px",
+        "300px": "300px",
       },
       scale: {
         60: "0.6",

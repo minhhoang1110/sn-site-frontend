@@ -34,3 +34,5 @@ export const PROFILE_TABS_DATA: TabData[] = [
 ];
 export const DateFormat: string = "DD/MM/YYYY";
 export const DateTimeFormat: string = "HH:mm, DD/MM/YYYY";
+export const FriendshipStateRequested: string = "StateRequested";
+export const FriendshipStateFriend: string = "StateFriend";

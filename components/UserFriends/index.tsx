@@ -2,6 +2,7 @@ import { User } from "@/types/DataObject";
 import React from "react";
 import TextField from "../TextField";
 import Link from "next/link";
+import FriendList from "../FriendList";
 interface Props {
   user: User | null;
 }
@@ -34,6 +35,7 @@ const UserFriends: React.FC<Props> = ({ user }) => {
           </Link>
         </div>
       </div>
+      <FriendList user={user} />
     </div>
   );
 };

@@ -73,3 +73,15 @@ export interface ListPostParams {
 export interface RefreshTokenRequestBody {
   refreshToken: string;
 }
+export interface Friendship extends BaseData {
+  firstUserId: number;
+  firstUser: User;
+  secondUserId: number;
+  secondUser: User;
+  state: String;
+}
+export interface CreateFriendshipBody {
+  firstUserId: number;
+  secondUserId: number;
+  state: string;
+}

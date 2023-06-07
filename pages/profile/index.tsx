@@ -9,7 +9,13 @@ const MyProfile: React.FC = () => {
   return (
     <MainLayout user={profile || null} limitMaxWidth={false}>
       <div className="mt-14 py-3">
-        <UserInformation user={profile || null} />
+        <UserInformation
+          user={profile || null}
+          showUpdateProfileButton={true}
+          showAddFriendButton={false}
+          showMessageButton={false}
+          friendship={null}
+        />
       </div>
     </MainLayout>
   );

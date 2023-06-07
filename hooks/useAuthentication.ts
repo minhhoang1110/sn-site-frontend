@@ -18,6 +18,7 @@ const useAuthentication = () => {
       !sessionJSON &&
       (!userValue.user || !userValue.accessToken || !userValue.refreshToken)
     ) {
+      router.push("/login");
       return;
     }
     if (
