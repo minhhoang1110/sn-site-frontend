@@ -1,5 +1,6 @@
-import { Post } from "@/types/DataObject";
-import React, { useState } from "react";
+/* eslint-disable react-hooks/exhaustive-deps */
+import { CreateLikeRequestBody, LikeObj, Post } from "@/types/DataObject";
+import React, { useEffect, useState } from "react";
 import Avatar from "../Avatar";
 import Icon from "@/icons";
 import Tooltip from "../Tooltip";
@@ -7,14 +8,18 @@ import moment from "moment";
 import { DateTimeFormat } from "@/configs/constants";
 import Button from "../Button";
 import CreatePostModal from "../CreatePostModal";
-import { useCurrentProfile } from "@/hooks";
+import { useAuthentication, useCurrentProfile } from "@/hooks";
+import { LikeAPI } from "@/api";
 interface Props {
   post: Post;
   canUpdatePost: boolean;
+  loadPosts: any;
 }
-const PostItem: React.FC<Props> = ({ post, canUpdatePost }) => {
+const PostItem: React.FC<Props> = ({ post, canUpdatePost, loadPosts }) => {
   const { profile, loadingProfile } = useCurrentProfile();
+  const { session } = useAuthentication();
   const [openUpdateModal, setOpenUpdateModal] = useState<boolean>(false);
+  const [currentLike, setCurrentLike] = useState<LikeObj | null>(null);
   const getSharedTypeIconSection = () => {
     switch (post.sharedType) {
       case "SharedTypePublic":
@@ -47,6 +52,38 @@ const PostItem: React.FC<Props> = ({ post, canUpdatePost }) => {
       <div className="scale-75 origin-left">{getSharedTypeIconSection()}</div>
     </div>
   );
+  const handleOnLike = () => {
+    if (!session || !session.accessToken || !session.user) return;
+    if (!currentLike) {
+      const data: CreateLikeRequestBody = {
+        userId: session.user.id,
+        postId: post.id,
+      };
+      LikeAPI.createLike(data, session.accessToken)
+        .then((res) => {
+          if (res.data.success) {
+            loadPosts();
+          }
+        })
+        .catch((error) => {});
+      return;
+    }
+    LikeAPI.deleteLike(currentLike.id, session.accessToken)
+      .then((res) => {
+        if (res.data.success) {
+          loadPosts();
+        }
+      })
+      .catch((error) => {});
+  };
+  useEffect(() => {
+    if (!session || !session.user) return;
+    const likes: LikeObj[] = post.likes;
+    const userId: number = (session && session.user && session.user.id) || -1;
+    const currentLike: LikeObj | undefined =
+      (likes && likes.find((l) => l.userId === userId)) || undefined;
+    setCurrentLike(currentLike || null);
+  }, [post, session]);
   if (loadingProfile) return <></>;
   return (
     <div className="w-full bg-white p-3 rounded-md shadow-md my-3">
@@ -100,9 +137,10 @@ const PostItem: React.FC<Props> = ({ post, canUpdatePost }) => {
           width="1/2"
           boldText
           lineHeight={"leading-8"}
-          textColor="gray-500"
+          textColor={currentLike ? "sky-600" : "gray-500"}
           backgroundHover="bg-gray-200"
           icon="like"
+          eventFuntion={handleOnLike}
         />
         <Button
           fontSize="text-lg"

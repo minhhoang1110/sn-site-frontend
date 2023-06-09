@@ -7,7 +7,7 @@ export interface Props {
   userId?: number | "";
 }
 const ListPost: React.FC<Props> = ({ userId = "" }) => {
-  const { posts, postsLoading, setPostsParams } = usePosts();
+  const { posts, postsLoading, setPostsParams, loadPosts } = usePosts();
   useEffect(() => {
     setPostsParams({ userId });
   }, [userId]);
@@ -20,6 +20,7 @@ const ListPost: React.FC<Props> = ({ userId = "" }) => {
             key={index}
             post={post}
             canUpdatePost={post.userId === userId}
+            loadPosts={loadPosts}
           />
         ))}
     </div>

@@ -66,6 +66,7 @@ export interface Post extends BaseData {
   imageUrls: string;
   countOfLikes: number;
   countOfComments: number;
+  likes: LikeObj[];
 }
 export interface ListPostParams {
   userId: number | "";
@@ -84,4 +85,13 @@ export interface CreateFriendshipBody {
   firstUserId: number;
   secondUserId: number;
   state: string;
+}
+export interface CreateLikeRequestBody {
+  userId: number;
+  postId: number;
+}
+export interface LikeObj extends BaseData {
+  userId: number;
+  user: User;
+  postId: number;
 }
