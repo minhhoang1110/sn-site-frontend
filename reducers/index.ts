@@ -1,4 +1,5 @@
 import { combineReducers } from "@reduxjs/toolkit";
 import AuthenticationReducer from "./Authentication";
-const reducers = combineReducers({ AuthenticationReducer });
+import PostsReducer from "./Posts";
+const reducers = combineReducers({ AuthenticationReducer, PostsReducer });
 export default reducers;

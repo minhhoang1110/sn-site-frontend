@@ -8,7 +8,7 @@ interface Props {
 }
 const Header: React.FC<Props> = ({ user }) => {
   return (
-    <div className="h-14 w-screen bg-white shadow fixed top-0 left-0 z-10000 py-1.5 px-4 flex items-center justify-between">
+    <div className="h-14 w-screen bg-white shadow fixed top-0 left-0 z-10 py-1.5 px-4 flex items-center justify-between">
       <div className="absolute top-1/2 translate-y-1/-2 left-4">
         <Link href="/" className="text-sky-600 font-bold text-2xl p-1">
           SN Site

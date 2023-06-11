@@ -15,7 +15,6 @@ export interface User extends BaseData {
   dateOfBirth: string;
   email: string;
   firstName: string;
-  isActive: boolean;
   lastName: string;
   password: string;
   phone: string;
@@ -67,6 +66,7 @@ export interface Post extends BaseData {
   countOfLikes: number;
   countOfComments: number;
   likes: LikeObj[];
+  comments: Comment[];
 }
 export interface ListPostParams {
   userId: number | "";
@@ -94,4 +94,18 @@ export interface LikeObj extends BaseData {
   userId: number;
   user: User;
   postId: number;
+}
+export interface Comment extends BaseData {
+  userId: number;
+  user: User;
+  postId: number;
+  comment: string;
+}
+export interface CreateCommentRequestBody {
+  userId: number;
+  postId: number;
+  comment: string;
+}
+export interface UpdateCommentRequestBody {
+  comment: string;
 }

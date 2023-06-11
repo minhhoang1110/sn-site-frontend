@@ -10,10 +10,10 @@ const AuthenticationReducer = (
   action: Action
 ) => {
   switch (action.type) {
-    case "SETVALUETOSTORE":
+    case "SETSESSIONTOSTORE":
       localStorage.setItem("session", JSON.stringify(action.payload));
       return action.payload;
-    case "REMOVEVALUEFROMSTORE":
+    case "REMOVESESSIONFROMSTORE":
       localStorage.removeItem("session");
       return action.payload;
     default:

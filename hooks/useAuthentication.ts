@@ -34,7 +34,7 @@ const useAuthentication = () => {
     const localSession: UserWithToken = JSON.parse(
       sessionJSON || ""
     ) as UserWithToken;
-    dispatch(authenticationAction.setValueToStore(localSession));
+    dispatch(authenticationAction.setSessionToStore(localSession));
     setSession(localSession);
   };
   useEffect(() => {

@@ -1,13 +1,18 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import { usePosts } from "@/hooks";
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import Loader from "../Loader";
 import PostItem from "../PostItem";
+import { Post } from "@/types/DataObject";
+import PostDetailModal from "../PostDetailModal";
 export interface Props {
   userId?: number | "";
 }
 const ListPost: React.FC<Props> = ({ userId = "" }) => {
   const { posts, postsLoading, setPostsParams, loadPosts } = usePosts();
+  const [selectedPost, setSelectedPost] = useState<Post>({} as Post);
+  const [openPostDetailModal, setOpenPostDetailModal] =
+    useState<boolean>(false);
   useEffect(() => {
     setPostsParams({ userId });
   }, [userId]);
@@ -21,8 +26,21 @@ const ListPost: React.FC<Props> = ({ userId = "" }) => {
             post={post}
             canUpdatePost={post.userId === userId}
             loadPosts={loadPosts}
+            setSelectedPost={setSelectedPost}
+            setOpenPostDetailModal={setOpenPostDetailModal}
+            commentButtonEvent={true}
+            borderRadius={true}
+            shadow={true}
+            padding={true}
           />
         ))}
+      <PostDetailModal
+        open={openPostDetailModal}
+        selectedPost={selectedPost}
+        setOpen={setOpenPostDetailModal}
+        setSelectedPost={setSelectedPost}
+        loadPosts={loadPosts}
+      />
     </div>
   );
 };

@@ -1,10 +1,10 @@
 import { UserWithToken } from "@/types/DataObject";
 import { Action } from "@/types/redux";
-const setValueToStore = (value: UserWithToken): Action => {
-  return { type: "SETVALUETOSTORE", payload: value };
+const setSessionToStore = (value: UserWithToken): Action => {
+  return { type: "SETSESSIONTOSTORE", payload: value };
 };
-const removeValueFromStore = (): Action => {
-  return { type: "REMOVEVALUEFROMSTORE", payload: null };
+const removeSessionFromStore = (): Action => {
+  return { type: "REMOVESESSIONFROMSTORE", payload: null };
 };
-const authenticationAction = { setValueToStore, removeValueFromStore };
+const authenticationAction = { setSessionToStore, removeSessionFromStore };
 export default authenticationAction;

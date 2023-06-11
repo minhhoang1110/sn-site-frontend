@@ -8,19 +8,38 @@ import moment from "moment";
 import { DateTimeFormat } from "@/configs/constants";
 import Button from "../Button";
 import CreatePostModal from "../CreatePostModal";
-import { useAuthentication, useCurrentProfile } from "@/hooks";
+import { useAuthentication, useCurrentProfile, usePost } from "@/hooks";
 import { LikeAPI } from "@/api";
 interface Props {
-  post: Post;
+  post: Post | null;
   canUpdatePost: boolean;
   loadPosts: any;
+  loadPost?: any;
+  commentButtonEvent?: boolean;
+  setSelectedPost?: any;
+  setOpenPostDetailModal?: any;
+  shadow: boolean;
+  borderRadius: boolean;
+  padding: boolean;
 }
-const PostItem: React.FC<Props> = ({ post, canUpdatePost, loadPosts }) => {
+const PostItem: React.FC<Props> = ({
+  post,
+  canUpdatePost,
+  loadPosts,
+  commentButtonEvent,
+  setOpenPostDetailModal,
+  setSelectedPost,
+  borderRadius,
+  shadow,
+  padding,
+  loadPost,
+}) => {
   const { profile, loadingProfile } = useCurrentProfile();
   const { session } = useAuthentication();
   const [openUpdateModal, setOpenUpdateModal] = useState<boolean>(false);
   const [currentLike, setCurrentLike] = useState<LikeObj | null>(null);
   const getSharedTypeIconSection = () => {
+    if (!post) return <></>;
     switch (post.sharedType) {
       case "SharedTypePublic":
         return (
@@ -47,7 +66,9 @@ const PostItem: React.FC<Props> = ({ post, canUpdatePost, loadPosts }) => {
   const postedTimeAndShareType = (
     <div className="flex items-center text-gray-500">
       <span className="text-xs mr-2 ">
-        {moment(new Date(post.updatedAt)).format(DateTimeFormat)}
+        {moment(
+          new Date((post && (post.updatedAt || post.createdAt)) || "")
+        ).format(DateTimeFormat)}
       </span>
       <div className="scale-75 origin-left">{getSharedTypeIconSection()}</div>
     </div>
@@ -57,12 +78,13 @@ const PostItem: React.FC<Props> = ({ post, canUpdatePost, loadPosts }) => {
     if (!currentLike) {
       const data: CreateLikeRequestBody = {
         userId: session.user.id,
-        postId: post.id,
+        postId: post?.id || 0,
       };
       LikeAPI.createLike(data, session.accessToken)
         .then((res) => {
           if (res.data.success) {
             loadPosts();
+            loadPost && loadPost(post?.id || 0);
           }
         })
         .catch((error) => {});
@@ -72,13 +94,18 @@ const PostItem: React.FC<Props> = ({ post, canUpdatePost, loadPosts }) => {
       .then((res) => {
         if (res.data.success) {
           loadPosts();
+          loadPost && loadPost(post?.id || 0);
         }
       })
       .catch((error) => {});
   };
+  const handleCommentButton = () => {
+    setSelectedPost && setSelectedPost(post);
+    setOpenPostDetailModal && setOpenPostDetailModal(true);
+  };
   useEffect(() => {
     if (!session || !session.user) return;
-    const likes: LikeObj[] = post.likes;
+    const likes: LikeObj[] = (post && post.likes) || [];
     const userId: number = (session && session.user && session.user.id) || -1;
     const currentLike: LikeObj | undefined =
       (likes && likes.find((l) => l.userId === userId)) || undefined;
@@ -86,22 +113,26 @@ const PostItem: React.FC<Props> = ({ post, canUpdatePost, loadPosts }) => {
   }, [post, session]);
   if (loadingProfile) return <></>;
   return (
-    <div className="w-full bg-white p-3 rounded-md shadow-md my-3">
+    <div
+      className={`w-full bg-white ${padding ? "p-3" : ""} ${
+        borderRadius ? "rounded-md" : ""
+      } ${shadow ? "shadow-md" : ""} my-3`}
+    >
       <div className="flex items-center justify-between">
         <div className="flex items-center justify-between">
           <Avatar
-            url={post.user.avatarUrl || ""}
+            url={post?.user.avatarUrl || ""}
             size="md"
             placeholder={
-              `${post.user.firstName.substring(
+              `${post?.user.firstName.substring(
                 0,
                 1
-              )} ${post.user.lastName.substring(0, 1)}` || ""
+              )} ${post?.user.lastName.substring(0, 1)}` || ""
             }
           />
           <div className="ml-2 text-left">
             <div className="font-bold">
-              {`${post.user.firstName} ${post.user.lastName}` || ""}
+              {`${post?.user.firstName} ${post?.user.lastName}` || ""}
             </div>
             <div className="">{postedTimeAndShareType}</div>
           </div>
@@ -117,7 +148,9 @@ const PostItem: React.FC<Props> = ({ post, canUpdatePost, loadPosts }) => {
           </div>
         )}
       </div>
-      <div className="text-2xl my-2 whitespace-pre-line">{post.content}</div>
+      <div className="text-2xl my-2 whitespace-pre-line">
+        {post?.content || ""}
+      </div>
       <div className="w-full flex items-center justify-between text-gray-500">
         <div className="flex items-center">
           <div className="inline-flex items-center justify-center bg-sky-600 rounded-full text-white w-5 h-5">
@@ -125,9 +158,9 @@ const PostItem: React.FC<Props> = ({ post, canUpdatePost, loadPosts }) => {
               <Icon icon="like" />
             </div>
           </div>
-          <span className="ml-2">{post.countOfLikes}</span>
+          <span className="ml-2">{post?.countOfLikes || 0}</span>
         </div>
-        <div>{post.countOfComments} bình luận</div>
+        <div>{post?.countOfComments || 0} bình luận</div>
       </div>
       <div className="w-full border-y border-solid border-gray-300 mt-2 flex items-center py-1">
         <Button
@@ -152,13 +185,14 @@ const PostItem: React.FC<Props> = ({ post, canUpdatePost, loadPosts }) => {
           textColor="gray-500"
           backgroundHover="bg-gray-200"
           icon="comment"
+          eventFuntion={() => commentButtonEvent && handleCommentButton()}
         />
       </div>
       <CreatePostModal
         open={openUpdateModal}
         setOpen={setOpenUpdateModal}
         user={profile}
-        post={post}
+        post={post || undefined}
       />
     </div>
   );

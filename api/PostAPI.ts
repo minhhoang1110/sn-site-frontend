@@ -23,6 +23,16 @@ const updatePost = (id: number, data: CreatePostRequestBody, token: string) => {
   };
   return axios.request(option);
 };
+const getPostDetail = (id: number, token: string) => {
+  const option: AxiosRequestConfig = {
+    method: "GET",
+    url: `${process.env.NEXT_PUBLIC_API_URI}/post/${id}`,
+    headers: {
+      Authorization: token,
+    },
+  };
+  return axios.request(option);
+};
 const getListPost = (params: ListPostParams, token: string) => {
   const option: AxiosRequestConfig = {
     method: "GET",
@@ -34,5 +44,5 @@ const getListPost = (params: ListPostParams, token: string) => {
   };
   return axios.request(option);
 };
-const PostAPI = { createPost, getListPost, updatePost };
+const PostAPI = { createPost, getListPost, updatePost, getPostDetail };
 export default PostAPI;

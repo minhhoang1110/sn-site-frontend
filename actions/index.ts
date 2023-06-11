@@ -1,2 +1,3 @@
 import authenticationAction from "./Authentication";
-export { authenticationAction };
+import postsAction from "./Posts";
+export { authenticationAction, postsAction };

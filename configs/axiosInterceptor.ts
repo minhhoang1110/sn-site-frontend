@@ -31,7 +31,7 @@ const RefreshToken = (error: any) => {
     .then((res) => {
       if (res.data.success) {
         dispatch(
-          authenticationAction.setValueToStore(res.data.data as UserWithToken)
+          authenticationAction.setSessionToStore(res.data.data as UserWithToken)
         );
         // error.config.headers = {
         //   Authorization: res.data.data.accessToken as string,
@@ -51,5 +51,6 @@ export const onResponseError = (error: AxiosError) => {
     const errMessage = error.response?.data || error?.response || error;
     return Promise.reject(errMessage);
   }
-  return RefreshToken(error);
+  // return RefreshToken(error);
+  return logout();
 };

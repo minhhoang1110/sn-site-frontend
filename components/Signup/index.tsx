@@ -35,7 +35,9 @@ const Signup: React.FC<Props> = ({ open, setOpen }) => {
       .then((res) => {
         if (res.data.success) {
           dispatch(
-            authenticationAction.setValueToStore(res.data.data as UserWithToken)
+            authenticationAction.setSessionToStore(
+              res.data.data as UserWithToken
+            )
           );
           setIsSubmit(false);
           router.push("/");

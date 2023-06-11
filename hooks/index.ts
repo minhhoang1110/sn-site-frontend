@@ -5,6 +5,7 @@ import useUser from "./useUser";
 import useFriendship from "./useFriendship";
 import useFriendships from "./useFriendships";
 import useRequestedFriendships from "./useRequestedFriendships";
+import usePost from "./usePost";
 export {
   useAuthentication,
   useCurrentProfile,
@@ -13,4 +14,5 @@ export {
   useFriendship,
   useFriendships,
   useRequestedFriendships,
+  usePost,
 };

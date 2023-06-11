@@ -14,7 +14,7 @@ const DropdownMenu: React.FC<Props> = ({ user }) => {
   const router = useRouter();
   const [openDropdown, setOpenDropdown] = useState<boolean>(false);
   const handleLogout = () => {
-    dispatch(authenticationAction.removeValueFromStore());
+    dispatch(authenticationAction.removeSessionFromStore());
     router.push("/login");
   };
   return (
