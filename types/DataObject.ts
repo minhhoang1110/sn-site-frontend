@@ -109,3 +109,18 @@ export interface CreateCommentRequestBody {
 export interface UpdateCommentRequestBody {
   comment: string;
 }
+export interface ChangePasswordRequestBody {
+  oldPassword: string;
+  newPassword: string;
+  confirmNewPassword: string;
+}
+export interface ReqForgotPasswordRequest {
+  email: string;
+}
+export interface ForgotPasswordRequestBody {
+  email: string;
+  temporaryPassword: string;
+  newPassword: string;
+  token: string;
+  confirmNewPassword: string;
+}

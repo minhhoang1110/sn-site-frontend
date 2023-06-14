@@ -2,8 +2,9 @@ import React from "react";
 interface Props {
   width: "w-full" | "w-screen";
   height: "h-full" | "h-screen";
+  text?: string;
 }
-const Loader: React.FC<Props> = ({ width, height }) => {
+const Loader: React.FC<Props> = ({ width, height, text = "Đang tải..." }) => {
   return (
     <div className={`${width} ${height} flex items-center justify-center`}>
       <svg
@@ -23,7 +24,7 @@ const Loader: React.FC<Props> = ({ width, height }) => {
           fill="#1C64F2"
         />
       </svg>
-      Đang tải...
+      {text}
     </div>
   );
 };

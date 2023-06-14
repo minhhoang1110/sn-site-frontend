@@ -5,6 +5,7 @@ import Modal from "@/components/Modal";
 import Signup from "@/components/Signup";
 import TextField from "@/components/TextField";
 import { LoginRequestBody, UserWithToken } from "@/types/DataObject";
+import Link from "next/link";
 import { useRouter } from "next/router";
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
@@ -91,7 +92,7 @@ const Login: React.FC = () => {
             </div>
           </form>
           <div className="mt-4 w-full text-center text-sky-600">
-            <a href="#">Quên mật khẩu?</a>
+            <Link href="/forgot-password">Quên mật khẩu?</Link>
           </div>
         </div>
         <div className="pt-1.5 w-full flex items-center justify-center">

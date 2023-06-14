@@ -16,7 +16,10 @@ const useAuthentication = () => {
     const sessionJSON: string | null = localStorage.getItem("session");
     if (
       !sessionJSON &&
-      (!userValue.user || !userValue.accessToken || !userValue.refreshToken)
+      (!userValue ||
+        !userValue.user ||
+        !userValue.accessToken ||
+        !userValue.refreshToken)
     ) {
       router.push("/login");
       return;
