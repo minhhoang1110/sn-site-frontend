@@ -1,23 +1,21 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import React, { useEffect, useState } from "react";
-import TextField from "../TextField";
+import { UserAPI } from "@/api";
+import Avatar from "@/components/Avatar";
+import TextField from "@/components/TextField";
+import { useAuthentication } from "@/hooks";
+import Icon from "@/icons";
 import { User } from "@/types/DataObject";
 import { SearchObj } from "@/types/common";
-import { UserAPI } from "@/api";
-import { useAuthentication } from "@/hooks";
 import Link from "next/link";
-import Avatar from "../Avatar";
-interface Props {}
-const EditableSearchField: React.FC<Props> = ({}) => {
+import React, { useEffect, useState } from "react";
+const Search: React.FC = () => {
   const { session } = useAuthentication();
   const initValue: SearchObj = {
     keyword: "",
   };
   const [values, setValues] = useState<SearchObj>(initValue);
-  const [isOpenSearchResult, setIsOpenSearchResult] = useState<boolean>(false);
   const [users, setUsers] = useState<User[]>([]);
   const handleClickSearchResult = () => {
-    setIsOpenSearchResult(false);
     setValues(initValue);
   };
   const searchResult = (): JSX.Element[] | JSX.Element | null => {
@@ -60,44 +58,52 @@ const EditableSearchField: React.FC<Props> = ({}) => {
     return html;
   };
   useEffect(() => {
-    if (values.keyword) {
-      UserAPI.getListUser(values, session?.accessToken || "").then((res) => {
-        if (res.data.success) {
-          setUsers(res.data.data || []);
-        }
-      });
-    }
+    if (!session || !session.accessToken || !values.keyword) return;
+    UserAPI.getListUser(values, session.accessToken).then((res) => {
+      if (res.data.success) {
+        setUsers(res.data.data || []);
+      }
+    });
   }, [values]);
   return (
-    <div className="w-full max-w-3xl relative my-0 mx-auto hidden lg:block">
-      <div className="w-full">
-        <TextField
-          readOnly={false}
-          fontSize="text-base"
-          hasBorder={true}
-          id="keyword"
-          placeholder="Tìm kiếm trên SN Site"
-          icon="search"
-          required={false}
-          type="text"
-          width="w-full"
-          borderRadius="rounded-full"
-          padding="sm"
-          background="bg-gray-300"
-          focusEvent={() => setIsOpenSearchResult(true)}
-          blurEvent={() => !values.keyword && setIsOpenSearchResult(false)}
-          values={values}
-          setValues={setValues}
-        />
+    <div>
+      <div className="h-14 w-screen bg-white shadow-md py-1.5 flex items-center justify-between">
+        <Link
+          href="/"
+          className="flex items-center justify-center text-center w-10 h-10 mr-4"
+        >
+          <Icon icon="arrow-left" />
+        </Link>
+        <div style={{ width: "calc(100% - 112px)" }}>
+          <TextField
+            readOnly={false}
+            fontSize="text-base"
+            hasBorder={true}
+            id="keyword"
+            placeholder="Tìm kiếm trên SN Site"
+            required={false}
+            type="text"
+            width="w-full"
+            borderRadius="rounded-full"
+            padding="sm"
+            background="bg-gray-300"
+            values={values}
+            setValues={setValues}
+          />
+        </div>
+        <div className="flex items-center justify-center text-center w-10 h-10 ml-4">
+          <Icon icon="search" />
+        </div>
       </div>
       <div
-        className={`w-full bg-white shadow rounded-md p-3 absolute z-10 left-0 top-full ${
-          isOpenSearchResult ? "block" : "hidden"
-        }`}
+        style={{ height: "calc(100vh - 56px)" }}
+        className="flex justify-center"
       >
-        {searchResult()}
+        <div className="mx-3 my-4 w-full max-h-full overflow-auto">
+          {searchResult()}
+        </div>
       </div>
     </div>
   );
 };
-export default EditableSearchField;
+export default Search;

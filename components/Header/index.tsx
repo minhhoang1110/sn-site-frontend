@@ -3,6 +3,7 @@ import Link from "next/link";
 import React from "react";
 import EditableSearchField from "../EditableSearchField";
 import DropdownMenu from "../DropdownMenu";
+import Icon from "@/icons";
 interface Props {
   user: User | null;
 }
@@ -15,7 +16,19 @@ const Header: React.FC<Props> = ({ user }) => {
         </Link>
       </div>
       <EditableSearchField />
-      <div className="absolute top-1/2 translate-y-1/-2 right-4">
+      <div className="absolute top-1/2 translate-y-1/-2 right-4 flex items-center">
+        <Link
+          href="/search"
+          className="flex lg:hidden items-center justify-center text-center w-10 h-10 bg-gray-300 rounded-full mr-3"
+        >
+          <Icon icon="search" />
+        </Link>
+        <Link
+          href="#"
+          className="flex items-center justify-center text-center w-10 h-10 bg-gray-300 rounded-full mr-3"
+        >
+          <Icon icon="chat" />
+        </Link>
         <DropdownMenu user={user} />
       </div>
     </div>

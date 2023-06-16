@@ -12,6 +12,8 @@ import LockClosed from "./LockClosed";
 import Like from "./Like";
 import CommentIcon from "./CommentIcon";
 import PencilSpuare from "./PencilSquare";
+import ChatBubble from "./ChatBubble";
+import ArrowLeft from "./ArrowLeft";
 interface Props {
   icon: string;
 }
@@ -43,6 +45,10 @@ const Icon: React.FC<Props> = ({ icon }) => {
       return <CommentIcon />;
     case "pencil-square":
       return <PencilSpuare />;
+    case "chat":
+      return <ChatBubble />;
+    case "arrow-left":
+      return <ArrowLeft />;
     default:
       return <></>;
   }
