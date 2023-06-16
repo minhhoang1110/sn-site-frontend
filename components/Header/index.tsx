@@ -24,7 +24,7 @@ const Header: React.FC<Props> = ({ user }) => {
           <Icon icon="search" />
         </Link>
         <Link
-          href="#"
+          href="/message"
           className="flex items-center justify-center text-center w-10 h-10 bg-gray-300 rounded-full mr-3"
         >
           <Icon icon="chat" />
