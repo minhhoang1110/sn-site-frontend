@@ -124,3 +124,24 @@ export interface ForgotPasswordRequestBody {
   token: string;
   confirmNewPassword: string;
 }
+export interface RoomChat extends BaseData {
+  userIds: string;
+  roomType: string;
+  thumbnailUrl: string;
+  hasUnreadMessage: boolean;
+}
+export interface Message extends BaseData {
+  roomId: number;
+  room: RoomChat;
+  userId: number;
+  user: User;
+  isRead: boolean;
+  message: string;
+  imageUrl: string;
+}
+export interface CreateMessageRequestBody {
+  roomId: number;
+  userId: number;
+  message: string;
+  imageUrl: string;
+}

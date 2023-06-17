@@ -10,6 +10,7 @@ import Button from "../Button";
 import CreatePostModal from "../CreatePostModal";
 import { useAuthentication, useCurrentProfile, usePost } from "@/hooks";
 import { LikeAPI } from "@/api";
+import { getAvatarPlaceholder } from "@/helper/componentData";
 interface Props {
   post: Post | null;
   canUpdatePost: boolean;
@@ -123,12 +124,7 @@ const PostItem: React.FC<Props> = ({
           <Avatar
             url={post?.user.avatarUrl || ""}
             size="md"
-            placeholder={
-              `${post?.user.firstName.substring(
-                0,
-                1
-              )} ${post?.user.lastName.substring(0, 1)}` || ""
-            }
+            placeholder={getAvatarPlaceholder(post?.user || null)}
           />
           <div className="ml-2 text-left">
             <div className="font-bold">

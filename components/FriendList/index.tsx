@@ -4,6 +4,7 @@ import Loader from "../Loader";
 import Link from "next/link";
 import { Friendship, User } from "@/types/DataObject";
 import Avatar from "../Avatar";
+import { getAvatarPlaceholder } from "@/helper/componentData";
 interface Props {
   user: User | null;
 }
@@ -26,14 +27,7 @@ const FriendList: React.FC<Props> = ({ user }) => {
         <Avatar
           url={data?.avatarUrl || ""}
           size="md"
-          placeholder={
-            (data &&
-              `${data.firstName.substring(0, 1)} ${data.lastName.substring(
-                0,
-                1
-              )}`) ||
-            ""
-          }
+          placeholder={getAvatarPlaceholder(data)}
         />
         <div className="font-bold text-xl ml-2">
           {(data && `${data.firstName} ${data.lastName}`) || ""}

@@ -10,6 +10,7 @@ import { PostAPI } from "@/api";
 import { useAuthentication } from "@/hooks";
 import Modal from "../Modal";
 import { useRouter } from "next/router";
+import { getAvatarPlaceholder } from "@/helper/componentData";
 interface Props {
   open: boolean;
   setOpen: React.Dispatch<React.SetStateAction<boolean>>;
@@ -134,14 +135,7 @@ const CreatePostModal: React.FC<Props> = ({
                             <Avatar
                               url={user?.avatarUrl || ""}
                               size="md"
-                              placeholder={
-                                (user &&
-                                  `${user.firstName.substring(
-                                    0,
-                                    1
-                                  )} ${user.lastName.substring(0, 1)}`) ||
-                                ""
-                              }
+                              placeholder={getAvatarPlaceholder(user)}
                             />
                             <div className="ml-2 text-left">
                               <div className="font-bold">

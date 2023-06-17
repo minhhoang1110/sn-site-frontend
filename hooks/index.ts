@@ -6,6 +6,9 @@ import useFriendship from "./useFriendship";
 import useFriendships from "./useFriendships";
 import useRequestedFriendships from "./useRequestedFriendships";
 import usePost from "./usePost";
+import useRoomChats from "./useRoomChats";
+import useRoomChat from "./useRoomChat";
+import useMessages from "./useMessages";
 export {
   useAuthentication,
   useCurrentProfile,
@@ -15,4 +18,7 @@ export {
   useFriendships,
   useRequestedFriendships,
   usePost,
+  useRoomChats,
+  useRoomChat,
+  useMessages,
 };

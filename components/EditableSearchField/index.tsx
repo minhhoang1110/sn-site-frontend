@@ -7,6 +7,7 @@ import { UserAPI } from "@/api";
 import { useAuthentication } from "@/hooks";
 import Link from "next/link";
 import Avatar from "../Avatar";
+import { getAvatarPlaceholder } from "@/helper/componentData";
 interface Props {}
 const EditableSearchField: React.FC<Props> = ({}) => {
   const { session } = useAuthentication();
@@ -41,14 +42,7 @@ const EditableSearchField: React.FC<Props> = ({}) => {
             <Avatar
               url={user.avatarUrl || ""}
               size="md"
-              placeholder={
-                (user &&
-                  `${user.firstName.substring(0, 1)} ${user.lastName.substring(
-                    0,
-                    1
-                  )}`) ||
-                ""
-              }
+              placeholder={getAvatarPlaceholder(user)}
             />
             <div className="ml-2 text-left font-bold">
               {(user && `${user.firstName} ${user.lastName}`) || ""}

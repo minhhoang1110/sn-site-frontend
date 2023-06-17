@@ -1,16 +1,24 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import Loader from "@/components/Loader";
 import UserInformation from "@/components/UserInformation";
 import { FriendshipStateFriend } from "@/configs/constants";
 import { useCurrentProfile, useFriendship, useUser } from "@/hooks";
 import MainLayout from "@/layouts/MainLayout";
 import { useRouter } from "next/router";
-import React from "react";
+import React, { useEffect } from "react";
 const UserProfile: React.FC = () => {
   const router = useRouter();
-  const id: string = router.query.id as string;
-  const { user, loadingUser } = useUser(id);
-  const { profile, loadingProfile } = useCurrentProfile();
-  const { friendship } = useFriendship(id);
+  const id: string = (router.query.id || "") as string;
+  const { user, loadingUser, loadUser } = useUser(id);
+  const { profile, loadingProfile, loadProfile } = useCurrentProfile();
+  const { friendship, loadFriendship } = useFriendship(id);
+  useEffect(() => {
+    if (id) {
+      loadProfile();
+      loadUser();
+      loadFriendship();
+    }
+  }, [id]);
   if (loadingUser || loadingProfile)
     return <Loader width="w-screen" height="h-screen" />;
   return (

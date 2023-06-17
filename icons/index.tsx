@@ -14,6 +14,8 @@ import CommentIcon from "./CommentIcon";
 import PencilSpuare from "./PencilSquare";
 import ChatBubble from "./ChatBubble";
 import ArrowLeft from "./ArrowLeft";
+import Photo from "./Photo";
+import PaperAirPlane from "./PaperAirPlane";
 interface Props {
   icon: string;
 }
@@ -49,6 +51,10 @@ const Icon: React.FC<Props> = ({ icon }) => {
       return <ChatBubble />;
     case "arrow-left":
       return <ArrowLeft />;
+    case "photo":
+      return <Photo />;
+    case "paper-airplane":
+      return <PaperAirPlane />;
     default:
       return <></>;
   }

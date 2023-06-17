@@ -11,6 +11,7 @@ import { useAuthentication } from "@/hooks";
 import { AuthenticationAPI, UserAPI } from "@/api";
 import Modal from "../Modal";
 import { useRouter } from "next/router";
+import { getAvatarPlaceholder } from "@/helper/componentData";
 interface Props {
   user: User | null;
   loadProfile: any;
@@ -65,14 +66,7 @@ const UserSetting: React.FC<Props> = ({ user, loadProfile }) => {
     <div className="w-full bg-white p-3 rounded-md shadow-md my-3 flex items-center">
       <Avatar
         url={user?.avatarUrl || ""}
-        placeholder={
-          (user &&
-            `${user.firstName.substring(0, 1)} ${user.lastName.substring(
-              0,
-              1
-            )}`) ||
-          ""
-        }
+        placeholder={getAvatarPlaceholder(user)}
         size="xl"
       />
       <div>

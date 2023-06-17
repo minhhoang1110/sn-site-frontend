@@ -3,6 +3,7 @@ import Avatar from "../Avatar";
 import { User } from "@/types/DataObject";
 import TextField from "../TextField";
 import CreatePostModal from "../CreatePostModal";
+import { getAvatarPlaceholder } from "@/helper/componentData";
 interface Props {
   user: User | null;
 }
@@ -14,14 +15,7 @@ const CreatePost: React.FC<Props> = ({ user }) => {
       <Avatar
         url={user?.avatarUrl || ""}
         size="md"
-        placeholder={
-          (user &&
-            `${user.firstName.substring(0, 1)} ${user.lastName.substring(
-              0,
-              1
-            )}`) ||
-          ""
-        }
+        placeholder={getAvatarPlaceholder(user)}
       />
       <div className="ml-2 w-full">
         <TextField

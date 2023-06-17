@@ -12,6 +12,7 @@ import {
 import UpdateProfileModal from "../UpdateProfileModal";
 import { useAuthentication } from "@/hooks";
 import { FriendshipAPI } from "@/api";
+import { getAvatarPlaceholder } from "@/helper/componentData";
 interface Props {
   user: User | null;
   friendship: Friendship | null;
@@ -118,14 +119,7 @@ const UserGeneralInformation: React.FC<Props> = ({
             <div className="flex flex-col md:flex-row items-center md:items-end">
               <Avatar
                 url={(user && user.avatarUrl) || ""}
-                placeholder={
-                  (user &&
-                    `${user.firstName.substring(
-                      0,
-                      1
-                    )} ${user.lastName.substring(0, 1)}`) ||
-                  ""
-                }
+                placeholder={getAvatarPlaceholder(user)}
                 size="xl"
               />
               <div className="ml-3 text-center md:text-left">

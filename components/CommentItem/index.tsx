@@ -5,6 +5,7 @@ import moment from "moment";
 import { DateTimeFormat } from "@/configs/constants";
 import { useAuthentication } from "@/hooks";
 import { CommentAPI } from "@/api";
+import { getAvatarPlaceholder } from "@/helper/componentData";
 interface Props {
   comment: Comment;
   setSelectedComment: any;
@@ -35,10 +36,7 @@ const CommentItem: React.FC<Props> = ({
     <div className="flex py-2">
       <Avatar
         url={user.avatarUrl}
-        placeholder={`${user.firstName.substring(
-          0,
-          1
-        )} ${user.lastName.substring(0, 1)}`}
+        placeholder={getAvatarPlaceholder(user)}
         size="md"
       />
       <div className="ml-3" style={{ maxWidth: "calc(100% - 52px)" }}>

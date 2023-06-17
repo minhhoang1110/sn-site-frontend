@@ -36,3 +36,5 @@ export const DateFormat: string = "DD/MM/YYYY";
 export const DateTimeFormat: string = "HH:mm, DD/MM/YYYY";
 export const FriendshipStateRequested: string = "StateRequested";
 export const FriendshipStateFriend: string = "StateFriend";
+export const RoomChatTypeDefault: string = "RoomTypeDefault";
+export const RoomChatTypeGroup: string = "RoomTypeGroup";

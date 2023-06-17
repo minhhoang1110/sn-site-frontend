@@ -1,4 +1,4 @@
-import { useAuthentication } from "@/hooks";
+import { useAuthentication, useRoomChats } from "@/hooks";
 import { User } from "@/types/DataObject";
 import { SearchObj } from "@/types/common";
 import React, { useState } from "react";
@@ -9,6 +9,7 @@ interface Props {
   user: User | null;
 }
 const ChatSideBar: React.FC<Props> = ({ user }) => {
+  const { roomchats, roomchatsLoading, loadRoomChats } = useRoomChats();
   const { session } = useAuthentication();
   const initValue: SearchObj = {
     keyword: "",
@@ -19,6 +20,7 @@ const ChatSideBar: React.FC<Props> = ({ user }) => {
   const handleClickSearchResult = () => {
     setValues(initValue);
   };
+  if (roomchatsLoading) return <></>;
   return (
     <div className="p-3 pt-20 bg-white border-r border-gray-300 border-solid w-full max-w-sm">
       <div className="pb-3 border-b border-gray-200 border-solid">
@@ -51,7 +53,7 @@ const ChatSideBar: React.FC<Props> = ({ user }) => {
           />
         </div>
       </div>
-      <ListRoomChat />
+      <ListRoomChat roomchats={roomchats} />
     </div>
   );
 };

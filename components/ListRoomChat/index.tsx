@@ -1,14 +1,26 @@
 import React from "react";
 import RoomChatItem from "../RoomChatItem";
-interface Props {}
-const ListRoomChat: React.FC<Props> = () => {
+import { RoomChat } from "@/types/DataObject";
+import { useAuthentication } from "@/hooks";
+import { getRoomChatUserId } from "@/helper/componentData";
+interface Props {
+  roomchats: RoomChat[];
+}
+const ListRoomChat: React.FC<Props> = ({ roomchats }) => {
+  const { session } = useAuthentication();
   return (
     <div
       className="w-full overflow-auto"
       style={{ maxHeight: "calc(100% - 130px)" }}
     >
-      <RoomChatItem userId={0} />
-      <RoomChatItem userId={0} />
+      {roomchats.length > 0 &&
+        roomchats.map((roomchat, index) => (
+          <RoomChatItem
+            key={index}
+            userId={getRoomChatUserId(roomchat.userIds, session)}
+            roomChatId={roomchat.id}
+          />
+        ))}
     </div>
   );
 };

@@ -2,6 +2,7 @@
 import { UserAPI } from "@/api";
 import Avatar from "@/components/Avatar";
 import TextField from "@/components/TextField";
+import { getAvatarPlaceholder } from "@/helper/componentData";
 import { useAuthentication } from "@/hooks";
 import Icon from "@/icons";
 import { User } from "@/types/DataObject";
@@ -39,14 +40,7 @@ const Search: React.FC = () => {
             <Avatar
               url={user.avatarUrl || ""}
               size="md"
-              placeholder={
-                (user &&
-                  `${user.firstName.substring(0, 1)} ${user.lastName.substring(
-                    0,
-                    1
-                  )}`) ||
-                ""
-              }
+              placeholder={getAvatarPlaceholder(user)}
             />
             <div className="ml-2 text-left font-bold">
               {(user && `${user.firstName} ${user.lastName}`) || ""}

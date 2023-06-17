@@ -7,6 +7,7 @@ import Button from "../Button";
 import { useAuthentication } from "@/hooks";
 import { FriendshipAPI } from "@/api";
 import { useRouter } from "next/router";
+import { getAvatarPlaceholder } from "@/helper/componentData";
 interface Props {
   friendships: Friendship[];
 }
@@ -54,12 +55,7 @@ const RequestedFriendList: React.FC<Props> = ({ friendships }) => {
             <Avatar
               url={friendship.firstUser.avatarUrl || ""}
               size="lg"
-              placeholder={
-                `${friendship.firstUser.firstName.substring(
-                  0,
-                  1
-                )} ${friendship.firstUser.lastName.substring(0, 1)}` || ""
-              }
+              placeholder={getAvatarPlaceholder(friendship.firstUser)}
             />
             <div className="text-left ml-2 w-auto md:w-3/4">
               <div className="flex items-start md:items-center flex-col md:flex-row justify-between">

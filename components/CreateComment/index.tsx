@@ -6,6 +6,7 @@ import Avatar from "../Avatar";
 import TextField from "../TextField";
 import Button from "../Button";
 import { CommentAPI } from "@/api";
+import { getAvatarPlaceholder } from "@/helper/componentData";
 interface Props {
   comment?: Comment;
   postId: number;
@@ -68,9 +69,7 @@ const CreateComment: React.FC<Props> = ({
     <div className="flex">
       <Avatar
         url={user?.avatarUrl || ""}
-        placeholder={`${
-          user?.firstName.substring(0, 1) || ""
-        } ${user?.lastName.substring(0, 1)}||"`}
+        placeholder={getAvatarPlaceholder(user)}
         size="md"
       />
       <div

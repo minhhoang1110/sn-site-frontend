@@ -6,6 +6,7 @@ import Icon from "@/icons";
 import { useDispatch } from "react-redux";
 import { useRouter } from "next/router";
 import { authenticationAction } from "@/actions";
+import { getAvatarPlaceholder } from "@/helper/componentData";
 interface Props {
   user: User | null;
 }
@@ -23,14 +24,7 @@ const DropdownMenu: React.FC<Props> = ({ user }) => {
         <Avatar
           url={user?.avatarUrl || ""}
           size="md"
-          placeholder={
-            (user &&
-              `${user.firstName.substring(0, 1)} ${user.lastName.substring(
-                0,
-                1
-              )}`) ||
-            ""
-          }
+          placeholder={getAvatarPlaceholder(user)}
         />
       </div>
       <div
@@ -49,14 +43,7 @@ const DropdownMenu: React.FC<Props> = ({ user }) => {
                   <Avatar
                     url={user?.avatarUrl || ""}
                     size="md"
-                    placeholder={
-                      (user &&
-                        `${user.firstName.substring(
-                          0,
-                          1
-                        )} ${user.lastName.substring(0, 1)}`) ||
-                      ""
-                    }
+                    placeholder={getAvatarPlaceholder(user)}
                   />
                 </div>
                 <span className="font-bold p-1">
