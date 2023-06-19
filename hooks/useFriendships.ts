@@ -1,5 +1,5 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import { Friendship } from "@/types/DataObject";
+import { Friendship, ListFriendShipParam } from "@/types/DataObject";
 import { useEffect, useState } from "react";
 import useAuthentication from "./useAuthentication";
 import { FriendshipAPI } from "@/api";
@@ -7,10 +7,13 @@ import { FriendshipAPI } from "@/api";
 const useFriendships = () => {
   const [friendships, setFriendships] = useState<Friendship[]>([]);
   const [friendshipsLoading, setFriendshipsLoading] = useState<boolean>(false);
+  const [friendshipsParam, setFriendShipsParam] = useState<ListFriendShipParam>(
+    { userId: null }
+  );
   const { session } = useAuthentication();
   const loadFriendships = () => {
     if (!session || !session.accessToken) return;
-    FriendshipAPI.getListFriendship(session.accessToken || "")
+    FriendshipAPI.getListFriendship(friendshipsParam, session.accessToken || "")
       .then((res) => {
         if (res.data.success) {
           setFriendships(res.data.data as Friendship[]);
@@ -27,13 +30,15 @@ const useFriendships = () => {
   };
   useEffect(() => {
     loadFriendships();
-  }, [session]);
+  }, [session, friendshipsParam]);
   return {
     friendships,
     setFriendships,
     friendshipsLoading,
     setFriendshipsLoading,
     loadFriendships,
+    friendshipsParam,
+    setFriendShipsParam,
   };
 };
 export default useFriendships;

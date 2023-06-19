@@ -1,4 +1,4 @@
-import { CreateFriendshipBody } from "@/types/DataObject";
+import { CreateFriendshipBody, ListFriendShipParam } from "@/types/DataObject";
 import axios, { AxiosRequestConfig } from "axios";
 
 const getFriendshipDetail = (userId: string, token: string) => {
@@ -11,13 +11,14 @@ const getFriendshipDetail = (userId: string, token: string) => {
   };
   return axios.request(option);
 };
-const getListFriendship = (token: string) => {
+const getListFriendship = (params: ListFriendShipParam, token: string) => {
   const option: AxiosRequestConfig = {
     method: "GET",
     url: `${process.env.NEXT_PUBLIC_API_URI}/friendship`,
     headers: {
       Authorization: token,
     },
+    params,
   };
   return axios.request(option);
 };

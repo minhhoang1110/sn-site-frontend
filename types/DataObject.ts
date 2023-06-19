@@ -23,6 +23,7 @@ export interface User extends BaseData {
   verifyEmailAt: string;
   chatWithSessionUser: boolean;
   roomChatId: number;
+  beFriendWidthSessionUser: boolean;
 }
 export interface UserWithToken {
   accessToken: string;
@@ -151,4 +152,7 @@ export interface CreateRoomChatRequestBody {
   userIds: string;
   roomType: string;
   thumbnailUrl: string;
+}
+export interface ListFriendShipParam {
+  userId: number | null;
 }

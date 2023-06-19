@@ -217,7 +217,6 @@ const UserGeneralInformation: React.FC<Props> = ({
                         }
                       />
                     </div>
-
                     <Button
                       background="bg-gray-300"
                       fontSize="text-base"
@@ -230,20 +229,25 @@ const UserGeneralInformation: React.FC<Props> = ({
                     />
                   </div>
                 )}
-              {showMessageButton && (
-                <div className="mt-3 inline-block md:block">
-                  <Button
-                    background="bg-gray-300"
-                    fontSize="text-base"
-                    lineHeight="leading-10"
-                    text="Nhắn tin"
-                    type="button"
-                    textColor="black"
-                    width="auto"
-                    eventFuntion={handleMessage}
-                  />
-                </div>
-              )}
+              {showMessageButton &&
+                friendship &&
+                session &&
+                session.user &&
+                friendship.state === FriendshipStateFriend &&
+                friendship.firstUserId === session.user.id && (
+                  <div className="mt-3 inline-block md:block">
+                    <Button
+                      background="bg-gray-300"
+                      fontSize="text-base"
+                      lineHeight="leading-10"
+                      text="Nhắn tin"
+                      type="button"
+                      textColor="black"
+                      width="auto"
+                      eventFuntion={handleMessage}
+                    />
+                  </div>
+                )}
             </div>
           </div>
         </div>

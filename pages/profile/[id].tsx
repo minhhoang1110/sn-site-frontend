@@ -27,8 +27,12 @@ const UserProfile: React.FC = () => {
         <UserInformation
           user={user || null}
           showUpdateProfileButton={false}
-          showMessageButton={true}
-          showAddFriendButton={true}
+          showMessageButton={
+            (user && profile && user.id != profile.id) || false
+          }
+          showAddFriendButton={
+            (user && profile && user.id != profile.id) || false
+          }
           friendship={friendship}
         />
       </div>

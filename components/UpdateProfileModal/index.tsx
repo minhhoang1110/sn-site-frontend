@@ -8,6 +8,7 @@ import { UserAPI } from "@/api";
 import { useAuthentication } from "@/hooks";
 import Modal from "../Modal";
 import { useRouter } from "next/router";
+import Icon from "@/icons";
 interface Props {
   user: User | null;
   open: boolean;
@@ -96,8 +97,14 @@ const UpdateProfileModal: React.FC<Props> = ({ user, open, setOpen }) => {
                       <div className="text-center">
                         <Dialog.Title
                           as="h3"
-                          className="text-xl text-center font-bold leading-6 text-gray-900 border-b border-gray-300 border-solid pb-3 relative"
+                          className="text-xl text-center font-bold leading-6 text-gray-900 border-b border-gray-300 border-solid pb-5 relative"
                         >
+                          <div
+                            className="flex items-center justify-center text-center w-10 h-10 mr-4 cursor-pointer absolute top-0 left-0"
+                            onClick={() => setOpen(false)}
+                          >
+                            <Icon icon="arrow-left" />
+                          </div>
                           Chỉnh sửa trang cá nhân
                         </Dialog.Title>
 

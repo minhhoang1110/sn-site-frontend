@@ -56,20 +56,28 @@ const ChatSideBar: React.FC<Props> = ({ user }) => {
       );
 
     html = users.map((user, index) => {
-      return (
-        <div key={index} onClick={() => handleClickSearchResult(user)}>
-          <div className="flex items-center bg-white hover:bg-gray-300 rounded-md p-2 my-2 cursor-pointer">
-            <Avatar
-              url={user.avatarUrl || ""}
-              size="md"
-              placeholder={getAvatarPlaceholder(user)}
-            />
-            <div className="ml-2 text-left font-bold">
-              {(user && `${user.firstName} ${user.lastName}`) || ""}
+      if (
+        session &&
+        session.user &&
+        session.user.id !== user.id &&
+        user.beFriendWidthSessionUser
+      ) {
+        return (
+          <div key={index} onClick={() => handleClickSearchResult(user)}>
+            <div className="flex items-center bg-white hover:bg-gray-300 rounded-md p-2 my-2 cursor-pointer">
+              <Avatar
+                url={user.avatarUrl || ""}
+                size="md"
+                placeholder={getAvatarPlaceholder(user)}
+              />
+              <div className="ml-2 text-left font-bold">
+                {(user && `${user.firstName} ${user.lastName}`) || ""}
+              </div>
             </div>
           </div>
-        </div>
-      );
+        );
+      }
+      return <div key={index}></div>;
     });
     return html;
   };
