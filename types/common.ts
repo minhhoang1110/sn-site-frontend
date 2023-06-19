@@ -9,3 +9,7 @@ export interface TabData {
 export interface SearchObj {
   keyword: string;
 }
+export interface WindowSize {
+  width: number;
+  height: number;
+}

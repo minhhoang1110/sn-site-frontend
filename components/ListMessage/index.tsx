@@ -9,9 +9,10 @@ const ListMessage: React.FC<Props> = ({ roomChatId }) => {
   const { messages, messagesLoading, loadMessages } = useMessages(roomChatId);
   if (messagesLoading)
     return (
-      <div style={{ height: "calc(100% - 134px)" }} className="overflow-auto">
-        <Loader width="w-full" height="h-full" text="Đang tải" />
-      </div>
+      <div
+        style={{ height: "calc(100% - 134px)" }}
+        className="overflow-auto"
+      ></div>
     );
   return (
     <div

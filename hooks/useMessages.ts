@@ -27,6 +27,10 @@ const useMessages = (roomId: number) => {
   };
   useEffect(() => {
     loadMessages(roomId);
+    const interval = setInterval(() => {
+      loadMessages(roomId);
+    }, 2000);
+    return () => clearInterval(interval);
   }, [session, roomId]);
   return {
     messages,

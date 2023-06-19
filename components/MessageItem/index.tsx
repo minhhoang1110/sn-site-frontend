@@ -5,6 +5,7 @@ import moment from "moment";
 import React from "react";
 import Avatar from "../Avatar";
 import { getAvatarPlaceholder } from "@/helper/componentData";
+import { ChatAPI } from "@/api";
 interface Props {
   message: Message;
 }
@@ -13,6 +14,12 @@ const MessageItem: React.FC<Props> = ({ message }) => {
   const checkMessageOwner = () => {
     if (!session || !session.user) return null;
     return message.userId === session.user.id;
+  };
+  const handleDeleteMessage = () => {
+    if (!session || !session.accessToken) return;
+    ChatAPI.deleteMessage(message.id, session.accessToken)
+      .then((res) => {})
+      .catch((error) => {});
   };
   return (
     <div
@@ -30,9 +37,9 @@ const MessageItem: React.FC<Props> = ({ message }) => {
               DateTimeFormat
             )}
             <span className="mx-1">.</span>
-            <span className="cursor-pointer">Chỉnh sửa</span>
-            <span className="mx-1">.</span>
-            <span className="cursor-pointer">Xoá</span>
+            <span className="cursor-pointer" onClick={handleDeleteMessage}>
+              Xoá
+            </span>
           </div>
         </div>
       )}

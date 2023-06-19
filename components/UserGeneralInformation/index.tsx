@@ -1,4 +1,9 @@
-import { CreateFriendshipBody, Friendship, User } from "@/types/DataObject";
+import {
+  CreateFriendshipBody,
+  CreateRoomChatRequestBody,
+  Friendship,
+  User,
+} from "@/types/DataObject";
 import React, { useState } from "react";
 import Avatar from "../Avatar";
 import Button from "../Button";
@@ -8,10 +13,11 @@ import {
   FriendshipStateFriend,
   FriendshipStateRequested,
   PROFILE_TABS_DATA,
+  RoomChatTypeDefault,
 } from "@/configs/constants";
 import UpdateProfileModal from "../UpdateProfileModal";
 import { useAuthentication } from "@/hooks";
-import { FriendshipAPI } from "@/api";
+import { ChatAPI, FriendshipAPI } from "@/api";
 import { getAvatarPlaceholder } from "@/helper/componentData";
 interface Props {
   user: User | null;
@@ -103,6 +109,26 @@ const UserGeneralInformation: React.FC<Props> = ({
       .then((res) => {
         if (res.data.success) {
           router.reload();
+        }
+      })
+      .catch((error) => {});
+  };
+  const handleMessage = () => {
+    if (!session || !session.accessToken || !session.user || !user) return;
+    if (user.chatWithSessionUser) {
+      router.push(`/message/${user.roomChatId}`);
+      return;
+    }
+
+    const data: CreateRoomChatRequestBody = {
+      roomType: RoomChatTypeDefault,
+      thumbnailUrl: "",
+      userIds: `${session.user.id},${user.id}`,
+    };
+    ChatAPI.createRoomChat(data, session.accessToken)
+      .then((res) => {
+        if (res.data.success) {
+          router.push(`/message/${res.data.data.id}`);
         }
       })
       .catch((error) => {});
@@ -214,6 +240,7 @@ const UserGeneralInformation: React.FC<Props> = ({
                     type="button"
                     textColor="black"
                     width="auto"
+                    eventFuntion={handleMessage}
                   />
                 </div>
               )}

@@ -21,6 +21,8 @@ export interface User extends BaseData {
   sendVerifyEmailAt: string;
   username: string;
   verifyEmailAt: string;
+  chatWithSessionUser: boolean;
+  roomChatId: number;
 }
 export interface UserWithToken {
   accessToken: string;
@@ -144,4 +146,9 @@ export interface CreateMessageRequestBody {
   userId: number;
   message: string;
   imageUrl: string;
+}
+export interface CreateRoomChatRequestBody {
+  userIds: string;
+  roomType: string;
+  thumbnailUrl: string;
 }
