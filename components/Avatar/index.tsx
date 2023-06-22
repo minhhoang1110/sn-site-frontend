@@ -52,7 +52,7 @@ const Avatar: React.FC<Props> = ({ url, size = "sm", placeholder }) => {
     <div
       className={`overflow-hidden flex items-center justify-center cursor-pointer ${getSize(
         size
-      )} rounded-full border border-white border-solid`}
+      )} rounded-full border border-white border-solid bg-gray-500`}
     >
       {url ? (
         <Image

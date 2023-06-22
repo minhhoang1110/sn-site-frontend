@@ -9,6 +9,8 @@ import { useAuthentication } from "@/hooks";
 import Modal from "../Modal";
 import { useRouter } from "next/router";
 import Icon from "@/icons";
+import ImageField from "../ImageField";
+import { ObjectTypeUserAvatar, ObjectTypeUserCover } from "@/configs/constants";
 interface Props {
   user: User | null;
   open: boolean;
@@ -109,6 +111,34 @@ const UpdateProfileModal: React.FC<Props> = ({ user, open, setOpen }) => {
                         </Dialog.Title>
 
                         <div className="mt-2 text-left">
+                          <div className="mb-2">
+                            <ImageField
+                              inputType="text-field"
+                              readOnly={false}
+                              fontSize="text-base"
+                              id="avatarUrl"
+                              required={false}
+                              width="w-full"
+                              label="Ảnh đại diện"
+                              values={values}
+                              setValues={setValues}
+                              objectType={ObjectTypeUserAvatar}
+                            />
+                          </div>
+                          <div className="mb-2">
+                            <ImageField
+                              inputType="text-field"
+                              readOnly={false}
+                              fontSize="text-base"
+                              id="coverUrl"
+                              required={false}
+                              width="w-full"
+                              label="Ảnh bìa"
+                              values={values}
+                              setValues={setValues}
+                              objectType={ObjectTypeUserCover}
+                            />
+                          </div>
                           <div className="mb-2">
                             <TextField
                               readOnly={false}

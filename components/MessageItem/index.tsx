@@ -31,6 +31,16 @@ const MessageItem: React.FC<Props> = ({ message }) => {
         <div className="max-w-1/2 overflow-hidden">
           <div className="p-3 bg-sky-500 rounded-md text-white whitespace-pre-line">
             {message.message}
+            {message.imageUrl && (
+              <div className="pt-3">
+                <div
+                  className="rounded-md flex items-center justify-center w-32 h-20 md:w-80 md:h-60 w-full bg-contain bg-center bg-no-repeat"
+                  style={{
+                    backgroundImage: `url('${message.imageUrl}')`,
+                  }}
+                ></div>
+              </div>
+            )}
           </div>
           <div className="text-sm text-gray-500">
             {moment(new Date(message.updatedAt || message.createdAt)).format(
@@ -54,6 +64,16 @@ const MessageItem: React.FC<Props> = ({ message }) => {
             <div className="ml-2">
               <div className="p-3 bg-gray-300 rounded-md whitespace-pre-line">
                 {message.message}
+                {message.imageUrl && (
+                  <div className="pt-3">
+                    <div
+                      className="rounded-md flex items-center justify-center w-32 h-20 md:w-80 md:h-60 w-full bg-contain bg-center bg-no-repeat"
+                      style={{
+                        backgroundImage: `url('${message.imageUrl}')`,
+                      }}
+                    ></div>
+                  </div>
+                )}
               </div>
               <div className="text-sm text-gray-500">
                 {moment(

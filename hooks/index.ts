@@ -10,6 +10,7 @@ import useRoomChats from "./useRoomChats";
 import useRoomChat from "./useRoomChat";
 import useMessages from "./useMessages";
 import useWindowResize from "./useWindowResize";
+import useFiles from "./useFiles";
 export {
   useAuthentication,
   useCurrentProfile,
@@ -23,4 +24,5 @@ export {
   useRoomChat,
   useMessages,
   useWindowResize,
+  useFiles,
 };

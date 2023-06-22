@@ -5,12 +5,13 @@ import Avatar from "../Avatar";
 import Button from "../Button";
 import TextAreaField from "../TextAreaField";
 import SelectField from "../SelectField";
-import { POST_SHARED_TYPE_OPTION } from "@/configs/constants";
+import { ObjectTypePost, POST_SHARED_TYPE_OPTION } from "@/configs/constants";
 import { PostAPI } from "@/api";
 import { useAuthentication } from "@/hooks";
 import Modal from "../Modal";
 import { useRouter } from "next/router";
 import { getAvatarPlaceholder } from "@/helper/componentData";
+import ImageField from "../ImageField";
 interface Props {
   open: boolean;
   setOpen: React.Dispatch<React.SetStateAction<boolean>>;
@@ -174,6 +175,30 @@ const CreatePostModal: React.FC<Props> = ({
                               readOnly={false}
                               values={values}
                               setValues={setValues}
+                            />
+                          </div>
+                          {values && values.imageUrls && (
+                            <div
+                              className="rounded-md flex items-center justify-center min-h-240px w-full border border-gray-300 border-solid bg-white bg-contain bg-center bg-no-repeat my-3"
+                              style={{
+                                backgroundImage: `url('${
+                                  values && values.imageUrls
+                                }')`,
+                              }}
+                            ></div>
+                          )}
+                          <div className="mt-2">
+                            <ImageField
+                              inputType="icon"
+                              readOnly={false}
+                              fontSize="text-base"
+                              id="imageUrls"
+                              required={false}
+                              width="w-full"
+                              label=""
+                              values={values}
+                              setValues={setValues}
+                              objectType={ObjectTypePost}
                             />
                           </div>
                         </div>

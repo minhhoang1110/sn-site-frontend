@@ -27,10 +27,6 @@ export const PROFILE_TABS_DATA: TabData[] = [
     text: "Bạn bè",
     paramValue: "friends",
   },
-  {
-    text: "Ảnh",
-    paramValue: "image",
-  },
 ];
 export const DateFormat: string = "DD/MM/YYYY";
 export const DateTimeFormat: string = "HH:mm, DD/MM/YYYY";
@@ -38,3 +34,9 @@ export const FriendshipStateRequested: string = "StateRequested";
 export const FriendshipStateFriend: string = "StateFriend";
 export const RoomChatTypeDefault: string = "RoomTypeDefault";
 export const RoomChatTypeGroup: string = "RoomTypeGroup";
+export const ObjectTypeUserAvatar: string = "ObjectTypeUserAvatar";
+export const ObjectTypeUserCover: string = "ObjectTypeUserCover";
+export const ObjectTypeRoomChat: string = "ObjectTypeRoomChat";
+export const ObjectTypeMessage: string = "ObjectTypeMessage";
+export const ObjectTypePost: string = "ObjectTypePost";
+export const FileTypeImage: string = "FileTypeImage";

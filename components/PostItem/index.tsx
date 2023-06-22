@@ -147,6 +147,14 @@ const PostItem: React.FC<Props> = ({
       <div className="text-2xl my-2 whitespace-pre-line">
         {post?.content || ""}
       </div>
+      {post && post.imageUrls && (
+        <div
+          className="rounded-md flex items-center justify-center min-h-240px w-full border border-gray-300 border-solid bg-white bg-contain bg-center bg-no-repeat my-3"
+          style={{
+            backgroundImage: `url('${post && post.imageUrls}')`,
+          }}
+        ></div>
+      )}
       <div className="w-full flex items-center justify-between text-gray-500">
         <div className="flex items-center">
           <div className="inline-flex items-center justify-center bg-sky-600 rounded-full text-white w-5 h-5">

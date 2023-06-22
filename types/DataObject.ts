@@ -156,3 +156,18 @@ export interface CreateRoomChatRequestBody {
 export interface ListFriendShipParam {
   userId: number | null;
 }
+export interface UploadFileRequestBody {
+  file: File;
+  fileType: string;
+  objectType: string;
+  userId: number;
+}
+export interface FileData extends BaseData {
+  fileType: string;
+  objectType: string;
+  userId: number;
+  url: string;
+}
+export interface ListFileParams {
+  userId: number;
+}

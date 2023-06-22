@@ -1,22 +1,26 @@
 import { useMessages } from "@/hooks";
 import React from "react";
-import Loader from "../Loader";
 import MessageItem from "../MessageItem";
 interface Props {
   roomChatId: number;
+  checkImage?: boolean;
 }
-const ListMessage: React.FC<Props> = ({ roomChatId }) => {
+const ListMessage: React.FC<Props> = ({ roomChatId, checkImage }) => {
   const { messages, messagesLoading, loadMessages } = useMessages(roomChatId);
   if (messagesLoading)
     return (
       <div
-        style={{ height: "calc(100% - 134px)" }}
+        style={{
+          height: `${checkImage ? "calc(100% - 262px)" : "calc(100% - 134px)"}`,
+        }}
         className="overflow-auto"
       ></div>
     );
   return (
     <div
-      style={{ height: "calc(100% - 134px)" }}
+      style={{
+        height: `${checkImage ? "calc(100% - 262px)" : "calc(100% - 134px)"}`,
+      }}
       className="overflow-auto overflow-x-hidden"
     >
       {messages.length > 0 &&

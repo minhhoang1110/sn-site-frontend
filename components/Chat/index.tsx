@@ -12,6 +12,8 @@ import TextField from "../TextField";
 import ListMessage from "../ListMessage";
 import { ChatAPI } from "@/api";
 import Link from "next/link";
+import ImageField from "../ImageField";
+import { ObjectTypeMessage } from "@/configs/constants";
 interface Props {
   roomChat: RoomChat | null;
   userId: number;
@@ -88,11 +90,44 @@ const Chat: React.FC<Props> = ({
           </div>
         </div>
       </div>
-      <ListMessage roomChatId={roomChat?.id || 0} />
-      <form></form>
+      <ListMessage
+        roomChatId={roomChat?.id || 0}
+        checkImage={values && values.imageUrl ? true : false}
+      />
+      {values && values.imageUrl && (
+        <div className="p-3 relative">
+          <div
+            className="relative rounded-md flex items-center justify-center w-32 h-20 w-full border border-gray-300 border-solid bg-white bg-contain bg-center bg-no-repeat my-3"
+            style={{
+              backgroundImage: `url('${values && values.imageUrl}')`,
+            }}
+          >
+            <div
+              className="absolute top-0 right-0 cursor-pointer w-7 h-7 rounded-full bg-gray-400 text-white p-1 flex items-center justify-center"
+              onClick={() => {
+                setValues({ ...values, imageUrl: "" });
+              }}
+            >
+              <Icon icon="x-circle" />
+            </div>
+          </div>
+        </div>
+      )}
       <div className="p-3 flex items-center">
         <div className="flex items-center justify-center text-center w-10 h-10 mr-3 cursor-pointer text-sky-600">
-          <Icon icon="photo" />
+          {/* <Icon icon="photo" /> */}
+          <ImageField
+            inputType="icon"
+            readOnly={false}
+            fontSize="text-base"
+            id="imageUrl"
+            required={false}
+            width="w-full"
+            label=""
+            values={values}
+            setValues={setValues}
+            objectType={ObjectTypeMessage}
+          />
         </div>
         <div style={{ width: "calc(100% - 104px)" }}>
           <TextField
