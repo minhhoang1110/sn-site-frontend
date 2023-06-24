@@ -9,31 +9,46 @@ export interface Props {
   userId?: number | "";
 }
 const ListPost: React.FC<Props> = ({ userId = "" }) => {
-  const { posts, postsLoading, setPostsParams, loadPosts } = usePosts();
+  const {
+    posts,
+    postsLoading,
+    setPostsParams,
+    postsParams,
+    loadPosts,
+    scrollPostsLoading,
+    loadError,
+  } = usePosts(userId);
   const [selectedPost, setSelectedPost] = useState<Post>({} as Post);
   const [openPostDetailModal, setOpenPostDetailModal] =
     useState<boolean>(false);
   useEffect(() => {
-    setPostsParams({ userId });
+    setPostsParams((prevParam) => {
+      return { ...prevParam, userId };
+    });
   }, [userId]);
   if (postsLoading) return <Loader width="w-full" height="h-full" />;
   return (
     <div className="w-full py-3">
-      {posts.length > 0 &&
-        posts.map((post, index) => (
-          <PostItem
-            key={index}
-            post={post}
-            canUpdatePost={post.userId === userId}
-            loadPosts={loadPosts}
-            setSelectedPost={setSelectedPost}
-            setOpenPostDetailModal={setOpenPostDetailModal}
-            commentButtonEvent={true}
-            borderRadius={true}
-            shadow={true}
-            padding={true}
-          />
-        ))}
+      {posts.length > 0 && (
+        <>
+          {posts.map((post, index) => (
+            <PostItem
+              key={index}
+              post={post}
+              canUpdatePost={post.userId === userId}
+              loadPosts={loadPosts}
+              setSelectedPost={setSelectedPost}
+              setOpenPostDetailModal={setOpenPostDetailModal}
+              commentButtonEvent={true}
+              borderRadius={true}
+              shadow={true}
+              padding={true}
+            />
+          ))}
+          {scrollPostsLoading && <p>Đang tải...</p>}
+          {loadError && <p>Error: {loadError.message}</p>}
+        </>
+      )}
       <PostDetailModal
         open={openPostDetailModal}
         selectedPost={selectedPost}

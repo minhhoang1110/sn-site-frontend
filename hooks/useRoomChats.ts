@@ -27,6 +27,10 @@ const useRoomChats = () => {
   };
   useEffect(() => {
     loadRoomChats();
+    const interval = setInterval(() => {
+      loadRoomChats();
+    }, 3000);
+    return () => clearInterval(interval);
   }, [session]);
   return {
     roomchats,

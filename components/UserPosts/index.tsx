@@ -6,10 +6,11 @@ interface Props {
   user: User | null;
 }
 const UserPosts: React.FC<Props> = ({ user }) => {
+  if (!user) return <></>;
   return (
     <div>
-      <CreatePost user={user || null} />
-      <ListPost userId={user?.id || -1} />
+      <CreatePost user={user} />
+      <ListPost userId={user.id} />
     </div>
   );
 };

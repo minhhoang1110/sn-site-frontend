@@ -1,5 +1,5 @@
 import { useMessages } from "@/hooks";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import MessageItem from "../MessageItem";
 interface Props {
   roomChatId: number;
@@ -21,7 +21,8 @@ const ListMessage: React.FC<Props> = ({ roomChatId, checkImage }) => {
       style={{
         height: `${checkImage ? "calc(100% - 262px)" : "calc(100% - 134px)"}`,
       }}
-      className="overflow-auto overflow-x-hidden"
+      className="overflow-auto overflow-x-hidden no-scrollbar"
+      id="listMessageSection"
     >
       {messages.length > 0 &&
         messages.map((message, index) => (

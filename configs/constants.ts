@@ -1,5 +1,8 @@
 import { SelectOption, TabData } from "@/types/common";
 
+export const DEFAULT_LIMIT: number = 10;
+export const DEFAULT_OFFSET: number = 0;
+export const DEFAULT_PAGE: number = 0;
 export const POST_SHARED_TYPE_OPTION: SelectOption[] = [
   {
     key: "SharedTypePublic",

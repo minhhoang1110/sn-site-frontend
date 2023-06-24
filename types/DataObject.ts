@@ -6,6 +6,11 @@ interface BaseData {
   updatedAt: Date;
   updatedBy: string;
 }
+interface PaginationParam {
+  limit: number;
+  offset: number;
+  page: number;
+}
 export interface User extends BaseData {
   address: string;
   avatarUrl: string;
@@ -71,7 +76,7 @@ export interface Post extends BaseData {
   likes: LikeObj[];
   comments: Comment[];
 }
-export interface ListPostParams {
+export interface ListPostParams extends PaginationParam {
   userId: number | "";
 }
 export interface RefreshTokenRequestBody {

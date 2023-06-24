@@ -13,8 +13,13 @@ const useMessages = (roomId: number) => {
     ChatAPI.getListMessage(roomId, session.accessToken)
       .then((res) => {
         if (res.data.success) {
-          setMessages(res.data.data as Message[]);
+          const messageData: Message[] = res.data.data;
+          setMessages(messageData);
           setMessagesLoading(false);
+          const listMessgaeEl = document.getElementById("listMessageSection");
+          if (listMessgaeEl) {
+            listMessgaeEl.scrollTop = listMessgaeEl.scrollHeight;
+          }
           return;
         }
         setMessages([]);
