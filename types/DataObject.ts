@@ -176,3 +176,13 @@ export interface FileData extends BaseData {
 export interface ListFileParams {
   userId: number;
 }
+export interface Notification extends BaseData {
+  userId: number;
+  user: User;
+  fromUserId: number;
+  fromUser: User;
+  type: string;
+  objectId: number;
+  action: string;
+  read: boolean;
+}

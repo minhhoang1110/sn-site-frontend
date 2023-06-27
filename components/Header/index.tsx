@@ -4,6 +4,7 @@ import React from "react";
 import EditableSearchField from "../EditableSearchField";
 import DropdownMenu from "../DropdownMenu";
 import Icon from "@/icons";
+import Notification from "../Notification";
 interface Props {
   user: User | null;
 }
@@ -29,6 +30,7 @@ const Header: React.FC<Props> = ({ user }) => {
         >
           <Icon icon="chat" />
         </Link>
+        <Notification />
         <DropdownMenu user={user} />
       </div>
     </div>

@@ -11,6 +11,7 @@ import useRoomChat from "./useRoomChat";
 import useMessages from "./useMessages";
 import useWindowResize from "./useWindowResize";
 import useFiles from "./useFiles";
+import useNotifications from "./useNotifications";
 export {
   useAuthentication,
   useCurrentProfile,
@@ -25,4 +26,5 @@ export {
   useMessages,
   useWindowResize,
   useFiles,
+  useNotifications,
 };

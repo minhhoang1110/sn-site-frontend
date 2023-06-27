@@ -7,6 +7,7 @@ import LikeAPI from "./LikeAPI";
 import CommentAPI from "./CommentAPI";
 import ChatAPI from "./ChatAPI";
 import FileAPI from "./FileAPI";
+import NotificationAPI from "./NotificationAPI";
 import { onResponseError, onResponseSuccess } from "@/configs/axiosInterceptor";
 axios.interceptors.response.use(onResponseSuccess, onResponseError);
 export {
@@ -18,4 +19,5 @@ export {
   CommentAPI,
   ChatAPI,
   FileAPI,
+  NotificationAPI,
 };

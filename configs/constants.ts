@@ -43,3 +43,8 @@ export const ObjectTypeRoomChat: string = "ObjectTypeRoomChat";
 export const ObjectTypeMessage: string = "ObjectTypeMessage";
 export const ObjectTypePost: string = "ObjectTypePost";
 export const FileTypeImage: string = "FileTypeImage";
+export const NotificationTypeLike: string = "TypeLike";
+export const NotificationTypeComment: string = "TypeComment";
+export const NotificationTypeRequestFriendShip: string =
+  "TypeRequestFriendShip";
+export const NotificationTypeAcceptFriendShip: string = "TypeAcceptFriendShip";

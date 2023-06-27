@@ -17,6 +17,7 @@ import ArrowLeft from "./ArrowLeft";
 import Photo from "./Photo";
 import PaperAirPlane from "./PaperAirPlane";
 import XCircle from "./XCircle";
+import Bell from "./Bell";
 interface Props {
   icon: string;
 }
@@ -58,6 +59,8 @@ const Icon: React.FC<Props> = ({ icon }) => {
       return <PaperAirPlane />;
     case "x-circle":
       return <XCircle />;
+    case "bell":
+      return <Bell />;
     default:
       return <></>;
   }
