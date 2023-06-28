@@ -31,6 +31,7 @@ const Signup: React.FC<Props> = ({ open, setOpen }) => {
   const cancelButtonRef = useRef(null);
   const handleSignup = (e: any) => {
     e.preventDefault();
+    setIsSubmit(true);
     AuthenticationAPI.signup(values)
       .then((res) => {
         if (res.data.success) {

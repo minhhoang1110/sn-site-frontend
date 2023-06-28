@@ -11,6 +11,7 @@ import CreatePostModal from "../CreatePostModal";
 import { useAuthentication, useCurrentProfile, usePost } from "@/hooks";
 import { LikeAPI } from "@/api";
 import { getAvatarPlaceholder } from "@/helper/componentData";
+import Link from "next/link";
 interface Props {
   post: Post | null;
   canUpdatePost: boolean;
@@ -39,6 +40,11 @@ const PostItem: React.FC<Props> = ({
   const { session } = useAuthentication();
   const [openUpdateModal, setOpenUpdateModal] = useState<boolean>(false);
   const [currentLike, setCurrentLike] = useState<LikeObj | null>(null);
+  const getProfileHref = () => {
+    if (!post || !session || !session.user) return "/profile";
+    if (post.userId === session.user.id) return "/profile";
+    return `/profile/${post?.user.id || 0}`;
+  };
   const getSharedTypeIconSection = () => {
     if (!post) return <></>;
     switch (post.sharedType) {
@@ -121,14 +127,19 @@ const PostItem: React.FC<Props> = ({
     >
       <div className="flex items-center justify-between">
         <div className="flex items-center justify-between">
-          <Avatar
-            url={post?.user.avatarUrl || ""}
-            size="md"
-            placeholder={getAvatarPlaceholder(post?.user || null)}
-          />
+          <Link href={getProfileHref()}>
+            <Avatar
+              url={post?.user.avatarUrl || ""}
+              size="md"
+              placeholder={getAvatarPlaceholder(post?.user || null)}
+            />
+          </Link>
+
           <div className="ml-2 text-left">
             <div className="font-bold">
-              {`${post?.user.firstName} ${post?.user.lastName}` || ""}
+              <Link href={getProfileHref()}>
+                {`${post?.user.firstName} ${post?.user.lastName}` || ""}
+              </Link>
             </div>
             <div className="">{postedTimeAndShareType}</div>
           </div>
