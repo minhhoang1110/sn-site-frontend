@@ -1,6 +1,7 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import { UserAPI } from "@/api";
 import Avatar from "@/components/Avatar";
+import DocumentHead from "@/components/DocumentHead";
 import TextField from "@/components/TextField";
 import { getAvatarPlaceholder } from "@/helper/componentData";
 import { useAuthentication } from "@/hooks";
@@ -62,6 +63,7 @@ const Search: React.FC = () => {
   return (
     <div>
       <div className="h-14 w-screen bg-white shadow-md py-1.5 flex items-center justify-between">
+        <DocumentHead title="Search" />
         <Link
           href="/"
           className="flex items-center justify-center text-center w-10 h-10 mr-4"

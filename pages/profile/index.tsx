@@ -1,3 +1,4 @@
+import DocumentHead from "@/components/DocumentHead";
 import Loader from "@/components/Loader";
 import UserInformation from "@/components/UserInformation";
 import { useCurrentProfile } from "@/hooks";
@@ -9,6 +10,7 @@ const MyProfile: React.FC = () => {
   return (
     <MainLayout user={profile || null} limitMaxWidth={false}>
       <div className="mt-14 py-3">
+        <DocumentHead title="My Profile" />
         <UserInformation
           user={profile || null}
           showUpdateProfileButton={true}

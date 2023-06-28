@@ -1,4 +1,5 @@
 /* eslint-disable react-hooks/exhaustive-deps */
+import DocumentHead from "@/components/DocumentHead";
 import Loader from "@/components/Loader";
 import UserInformation from "@/components/UserInformation";
 import { FriendshipStateFriend } from "@/configs/constants";
@@ -24,6 +25,7 @@ const UserProfile: React.FC = () => {
   return (
     <MainLayout user={profile || null} limitMaxWidth={false}>
       <div className="mt-14 py-3">
+        <DocumentHead title="User Profile" />
         <UserInformation
           user={user || null}
           showUpdateProfileButton={false}

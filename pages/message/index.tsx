@@ -1,3 +1,4 @@
+import DocumentHead from "@/components/DocumentHead";
 import Loader from "@/components/Loader";
 import { useCurrentProfile, useWindowResize } from "@/hooks";
 import MessageLayout from "@/layouts/MessageLayout";
@@ -15,12 +16,15 @@ const Message: React.FC = () => {
   }, [windowSize.width]);
   if (loadingProfile) return <Loader width="w-screen" height="h-screen" />;
   return (
-    <MessageLayout
-      showChatSection={isShowChatSection}
-      showSideBar={true}
-      user={profile}
-      windowWidth={windowSize.width}
-    ></MessageLayout>
+    <>
+      <DocumentHead title="Room Chat" />
+      <MessageLayout
+        showChatSection={isShowChatSection}
+        showSideBar={true}
+        user={profile}
+        windowWidth={windowSize.width}
+      ></MessageLayout>
+    </>
   );
 };
 export default Message;

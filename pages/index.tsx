@@ -1,4 +1,5 @@
 import CreatePost from "@/components/CreatePost";
+import DocumentHead from "@/components/DocumentHead";
 import ListPost from "@/components/ListPost";
 import Loader from "@/components/Loader";
 import { useCurrentProfile } from "@/hooks";
@@ -10,6 +11,7 @@ const Home: React.FC = () => {
   return (
     <MainLayout user={profile || null}>
       <div className="mt-14 py-3">
+        <DocumentHead />
         <CreatePost user={profile || null} />
         <ListPost />
       </div>

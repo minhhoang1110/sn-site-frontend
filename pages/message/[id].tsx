@@ -1,5 +1,6 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import Chat from "@/components/Chat";
+import DocumentHead from "@/components/DocumentHead";
 import Loader from "@/components/Loader";
 import RoomChatInformation from "@/components/RoomChatInformation";
 import { useCurrentProfile, useRoomChat, useWindowResize } from "@/hooks";
@@ -37,6 +38,7 @@ const RoomChat: React.FC = () => {
       windowWidth={windowSize.width}
     >
       <div className="w-full h-full flex pt-14 bg-white">
+        <DocumentHead title="Chat" />
         <Chat
           roomChat={roomchat}
           userId={profile?.id || 0}

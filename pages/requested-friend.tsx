@@ -1,3 +1,4 @@
+import DocumentHead from "@/components/DocumentHead";
 import Loader from "@/components/Loader";
 import RequestedFriendList from "@/components/RequestedFriendList";
 import { useCurrentProfile, useRequestedFriendships } from "@/hooks";
@@ -11,6 +12,7 @@ const RequestedFriend: React.FC = () => {
   return (
     <MainLayout user={profile || null}>
       <div className="mt-14 py-3">
+        <DocumentHead title="Friend Request List" />
         <RequestedFriendList friendships={friendships} />
       </div>
     </MainLayout>
