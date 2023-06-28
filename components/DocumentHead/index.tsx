@@ -11,6 +11,10 @@ const DocumentHead: React.FC<Props> = ({ title }) => {
         name="description"
         content="Social Network Site Personal Project. Be inspired by Facebook"
       />
+      <meta
+        http-equiv="Content-Security-Policy"
+        content="upgrade-insecure-requests"
+      ></meta>
       <meta name="viewport" content="width=device-width, initial-scale=1" />
       <link rel="icon" href="/favicon.ico" />
     </Head>
