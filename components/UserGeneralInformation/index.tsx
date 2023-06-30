@@ -233,8 +233,7 @@ const UserGeneralInformation: React.FC<Props> = ({
                 friendship &&
                 session &&
                 session.user &&
-                friendship.state === FriendshipStateFriend &&
-                friendship.firstUserId === session.user.id && (
+                friendship.state === FriendshipStateFriend && (
                   <div className="mt-3 inline-block md:block">
                     <Button
                       background="bg-gray-300"
