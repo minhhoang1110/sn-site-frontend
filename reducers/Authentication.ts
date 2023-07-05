@@ -15,7 +15,7 @@ const AuthenticationReducer = (
       return action.payload;
     case "REMOVESESSIONFROMSTORE":
       localStorage.removeItem("session");
-      return action.payload;
+      return null;
     default:
       return state;
   }

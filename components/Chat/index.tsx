@@ -39,6 +39,11 @@ const Chat: React.FC<Props> = ({
   const { user, loadingUser } = useUser(
     getRoomChatUserId(roomChat?.userIds || "", session).toString()
   );
+  const getProfileHref = () => {
+    if (!user || !session || !session.user) return "/profile";
+    if (user.id === session.user.id) return "/profile";
+    return `/profile/${user.id || 0}`;
+  };
   const handleSaveMessage = (e: any) => {
     if (!session || !session.accessToken) return;
     ChatAPI.createMessage(values, session.accessToken)
@@ -72,14 +77,16 @@ const Chat: React.FC<Props> = ({
           >
             <Icon icon="arrow-left" />
           </Link>
-          <Avatar
-            url={user?.avatarUrl || ""}
-            size="md"
-            placeholder={getAvatarPlaceholder(user)}
-          />
-          <span className={`font-bold p-1`}>
-            {(user && `${user.firstName} ${user.lastName}`) || ""}
-          </span>
+          <Link href={getProfileHref()} className="flex items-center">
+            <Avatar
+              url={user?.avatarUrl || ""}
+              size="md"
+              placeholder={getAvatarPlaceholder(user)}
+            />
+            <span className={`font-bold p-1`}>
+              {(user && `${user.firstName} ${user.lastName}`) || ""}
+            </span>
+          </Link>
         </div>
         <div className="flex items-center">
           <div

@@ -1,4 +1,5 @@
 import dynamic from "next/dynamic";
+import DocumentHead from "@/components/DocumentHead";
 import Loader from "@/components/Loader";
 const UserInformation = dynamic(() => import("@/components/UserInformation"));
 // import UserInformation from "@/components/UserInformation";
@@ -13,6 +14,7 @@ const MyProfile: React.FC = () => {
   return (
     <MainLayout user={profile || null} limitMaxWidth={false}>
       <div className="mt-14 py-3">
+        <DocumentHead title="My Profile" />
         <UserInformation
           user={profile || null}
           showUpdateProfileButton={true}

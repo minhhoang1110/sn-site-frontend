@@ -2,6 +2,7 @@ import dynamic from "next/dynamic";
 import { NotificationAPI } from "@/api";
 const ListNotification = dynamic(() => import("@/components/ListNotification"));
 // import ListNotification from "@/components/ListNotification";
+import DocumentHead from "@/components/DocumentHead";
 import Loader from "@/components/Loader";
 import {
   useAuthentication,
@@ -33,6 +34,7 @@ const NotificationPage: React.FC = () => {
   return (
     <MainLayout user={profile || null}>
       <div className="mt-14 py-3">
+        <DocumentHead title="Notifications" />
         <div
           onClick={handleReadAllNotification}
           className={`mb-3 p-2 w-fit text-left ${

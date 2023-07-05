@@ -6,6 +6,7 @@ import { DateTimeFormat } from "@/configs/constants";
 import { useAuthentication } from "@/hooks";
 import { CommentAPI } from "@/api";
 import { getAvatarPlaceholder } from "@/helper/componentData";
+import Link from "next/link";
 interface Props {
   comment: Comment;
   setSelectedComment: any;
@@ -20,6 +21,11 @@ const CommentItem: React.FC<Props> = ({
 }) => {
   const { session } = useAuthentication();
   const user: User = comment.user;
+  const getProfileHref = () => {
+    if (!user || !session || !session.user) return "/profile";
+    if (user.id === session.user.id) return "/profile";
+    return `/profile/${user.id || 0}`;
+  };
   const handleOnDeleteComment = () => {
     if (!session || !session.accessToken) return;
     CommentAPI.deleteComment(comment.id, session.accessToken)
@@ -34,11 +40,13 @@ const CommentItem: React.FC<Props> = ({
   };
   return (
     <div className="flex py-2">
-      <Avatar
-        url={user.avatarUrl}
-        placeholder={getAvatarPlaceholder(user)}
-        size="md"
-      />
+      <Link href={getProfileHref()}>
+        <Avatar
+          url={user.avatarUrl}
+          placeholder={getAvatarPlaceholder(user)}
+          size="md"
+        />
+      </Link>
       <div className="ml-3" style={{ maxWidth: "calc(100% - 52px)" }}>
         <div className="bg-gray-300 p-3 rounded-md">
           <div className="font-bold mb-1">{`${user.firstName} ${user.lastName}`}</div>

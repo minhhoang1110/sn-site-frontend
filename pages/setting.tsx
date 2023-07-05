@@ -1,4 +1,5 @@
 import ChangePassword from "@/components/ChangePassword";
+import DocumentHead from "@/components/DocumentHead";
 import Loader from "@/components/Loader";
 import UserSetting from "@/components/UserSetting";
 import { useCurrentProfile } from "@/hooks";
@@ -10,6 +11,7 @@ const Setting: React.FC = () => {
   return (
     <MainLayout user={profile}>
       <div className="mt-14 py-3">
+        <DocumentHead title="Setting" />
         <UserSetting user={profile} loadProfile={loadProfile} />
         <ChangePassword />
       </div>

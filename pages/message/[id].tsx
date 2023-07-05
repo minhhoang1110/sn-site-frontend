@@ -2,6 +2,7 @@
 import dynamic from "next/dynamic";
 const Chat = dynamic(() => import("@/components/Chat"));
 // import Chat from "@/components/Chat";
+import DocumentHead from "@/components/DocumentHead";
 import Loader from "@/components/Loader";
 const RoomChatInformation = dynamic(
   () => import("@/components/RoomChatInformation")
@@ -43,6 +44,7 @@ const RoomChat: React.FC = () => {
       windowWidth={windowSize.width}
     >
       <div className="w-full h-full flex pt-14 bg-white">
+        <DocumentHead title="Chat" />
         <Chat
           roomChat={roomchat}
           userId={profile?.id || 0}

@@ -61,6 +61,7 @@ const Avatar: React.FC<Props> = ({ url, size = "sm", placeholder }) => {
           alt=""
           width={getwidthHeight(size)}
           height={getwidthHeight(size)}
+          unoptimized={true}
         />
       ) : (
         <div

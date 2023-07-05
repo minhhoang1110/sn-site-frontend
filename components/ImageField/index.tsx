@@ -1,12 +1,11 @@
 import React, { useRef, useState } from "react";
 import Button from "../Button";
-import Image from "next/image";
 import { useAuthentication } from "@/hooks";
 import { FileTypeImage } from "@/configs/constants";
 import { FileAPI } from "@/api";
 import ListImageModal from "./ListImageModal";
-import Tooltip from "../Tooltip";
 import Icon from "@/icons";
+import Modal from "../Modal";
 interface Props {
   id: string;
   label?: string;
@@ -61,6 +60,7 @@ const ImageField: React.FC<Props> = ({
 }) => {
   const { session } = useAuthentication();
   const inputFileElement = useRef<HTMLInputElement>(null);
+  const [openUploadingModal, setOpenUploadingModal] = useState<boolean>(false);
   const [openSelectImageModel, setOpenSelectImageModal] =
     useState<boolean>(false);
   const handleOnFocus = () => {
@@ -84,9 +84,11 @@ const ImageField: React.FC<Props> = ({
     formData.append("fileType", FileTypeImage);
     formData.append("objectType", objectType);
     formData.append("userId", session.user.id.toString());
+    setOpenUploadingModal(true);
     FileAPI.uploadFile(formData, session.accessToken)
       .then((res) => {
         if (res.data.success) {
+          setOpenUploadingModal(false);
           handleOnSelectImage((res.data.data && res.data.data.url) || "");
         }
       })
@@ -190,6 +192,15 @@ const ImageField: React.FC<Props> = ({
         setValues={setValues}
         userId={(session && session.user && session.user.id) || 0}
         handleOnSelectImage={handleOnSelectImage}
+      />
+      <Modal
+        content="Đang tải ảnh"
+        hasFooter={false}
+        open={openUploadingModal}
+        setOpen={setOpenUploadingModal}
+        textAlign="center"
+        fontSize="xl"
+        boldText
       />
     </div>
   );

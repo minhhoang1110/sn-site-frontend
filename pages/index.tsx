@@ -3,6 +3,7 @@ import dynamic from "next/dynamic";
 const CreatePost = dynamic(() => import("@/components/CreatePost"));
 const ListPost = dynamic(() => import("@/components/ListPost"));
 // import ListPost from "@/components/ListPost";
+import DocumentHead from "@/components/DocumentHead";
 import Loader from "@/components/Loader";
 import { useCurrentProfile } from "@/hooks";
 const MainLayout = dynamic(() => import("@/layouts/MainLayout"));
@@ -14,6 +15,7 @@ const Home: React.FC = () => {
   return (
     <MainLayout user={profile || null}>
       <div className="mt-14 py-3">
+        <DocumentHead />
         <CreatePost user={profile || null} />
         <ListPost />
       </div>

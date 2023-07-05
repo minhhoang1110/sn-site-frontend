@@ -6,11 +6,17 @@ import React from "react";
 import Avatar from "../Avatar";
 import { getAvatarPlaceholder } from "@/helper/componentData";
 import { ChatAPI } from "@/api";
+import Link from "next/link";
 interface Props {
   message: Message;
 }
 const MessageItem: React.FC<Props> = ({ message }) => {
   const { session } = useAuthentication();
+  const getProfileHref = () => {
+    if (!message || !session || !session.user) return "/profile";
+    if (message.userId === session.user.id) return "/profile";
+    return `/profile/${message.userId || 0}`;
+  };
   const checkMessageOwner = () => {
     if (!session || !session.user) return null;
     return message.userId === session.user.id;
@@ -56,11 +62,13 @@ const MessageItem: React.FC<Props> = ({ message }) => {
       {checkMessageOwner() !== null && !checkMessageOwner() && (
         <div className="max-w-1/2 overflow-hidden">
           <div className="flex items-end">
-            <Avatar
-              url={message.user.avatarUrl}
-              placeholder={getAvatarPlaceholder(message.user)}
-              size="md"
-            />
+            <Link href={getProfileHref()}>
+              <Avatar
+                url={message.user.avatarUrl}
+                placeholder={getAvatarPlaceholder(message.user)}
+                size="md"
+              />
+            </Link>
             <div className="ml-2">
               <div className="p-3 bg-gray-300 rounded-md whitespace-pre-line">
                 {message.message}

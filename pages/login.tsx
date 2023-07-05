@@ -1,6 +1,7 @@
 import { authenticationAction } from "@/actions";
 import { AuthenticationAPI } from "@/api";
 import Button from "@/components/Button";
+import DocumentHead from "@/components/DocumentHead";
 import Modal from "@/components/Modal";
 import Signup from "@/components/Signup";
 import TextField from "@/components/TextField";
@@ -47,6 +48,7 @@ const Login: React.FC = () => {
   };
   return (
     <div className="flex items-center justify-center flex-col w-screen h-screen bg-slate-200">
+      <DocumentHead title="Login" />
       <h1 className="text-center text-sky-600 mb-5 font-bold text-6xl">
         SN Site
       </h1>

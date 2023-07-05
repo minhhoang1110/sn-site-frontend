@@ -7,6 +7,7 @@ import { useDispatch } from "react-redux";
 import { useRouter } from "next/router";
 import { authenticationAction } from "@/actions";
 import { getAvatarPlaceholder } from "@/helper/componentData";
+import Modal from "../Modal";
 interface Props {
   user: User | null;
 }
@@ -14,9 +15,11 @@ const DropdownMenu: React.FC<Props> = ({ user }) => {
   const dispatch = useDispatch();
   const router = useRouter();
   const [openDropdown, setOpenDropdown] = useState<boolean>(false);
+  const [openSignoutModal, setOpenSignoutModal] = useState<boolean>(false);
   const handleLogout = () => {
-    dispatch(authenticationAction.removeSessionFromStore());
+    setOpenSignoutModal(true);
     router.push("/login");
+    dispatch(authenticationAction.removeSessionFromStore());
   };
   return (
     <div className="relative">
@@ -82,6 +85,15 @@ const DropdownMenu: React.FC<Props> = ({ user }) => {
       <div className="absolute left-2/3 top-1/2 z-10 bg-gray-300 rounded-full scale-75">
         <Icon icon="chevron-down" />
       </div>
+      <Modal
+        content="Đang đăng xuất"
+        hasFooter={false}
+        open={openSignoutModal}
+        setOpen={setOpenSignoutModal}
+        textAlign="center"
+        fontSize="xl"
+        boldText
+      />
     </div>
   );
 };
