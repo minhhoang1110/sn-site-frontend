@@ -1,12 +1,15 @@
+import dynamic from "next/dynamic";
 import { NotificationAPI } from "@/api";
-import ListNotification from "@/components/ListNotification";
+const ListNotification = dynamic(() => import("@/components/ListNotification"));
+// import ListNotification from "@/components/ListNotification";
 import Loader from "@/components/Loader";
 import {
   useAuthentication,
   useCurrentProfile,
   useNotifications,
 } from "@/hooks";
-import MainLayout from "@/layouts/MainLayout";
+const MainLayout = dynamic(() => import("@/layouts/MainLayout"));
+// import MainLayout from "@/layouts/MainLayout";
 import React from "react";
 const NotificationPage: React.FC = () => {
   const {

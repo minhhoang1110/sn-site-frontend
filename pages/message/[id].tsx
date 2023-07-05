@@ -1,9 +1,15 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import Chat from "@/components/Chat";
+import dynamic from "next/dynamic";
+const Chat = dynamic(() => import("@/components/Chat"));
+// import Chat from "@/components/Chat";
 import Loader from "@/components/Loader";
-import RoomChatInformation from "@/components/RoomChatInformation";
+const RoomChatInformation = dynamic(
+  () => import("@/components/RoomChatInformation")
+);
+// import RoomChatInformation from "@/components/RoomChatInformation";
 import { useCurrentProfile, useRoomChat, useWindowResize } from "@/hooks";
-import MessageLayout from "@/layouts/MessageLayout";
+const MessageLayout = dynamic(() => import("@/layouts/MessageLayout"));
+// import MessageLayout from "@/layouts/MessageLayout";
 import { useRouter } from "next/router";
 import React, { useEffect, useState } from "react";
 const RoomChat: React.FC = () => {
