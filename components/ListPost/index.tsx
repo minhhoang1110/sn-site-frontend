@@ -13,7 +13,6 @@ const ListPost: React.FC<Props> = ({ userId = "" }) => {
     posts,
     postsLoading,
     setPostsParams,
-    postsParams,
     loadPosts,
     scrollPostsLoading,
     loadError,

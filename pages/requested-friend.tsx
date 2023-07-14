@@ -4,10 +4,8 @@ import Loader from "@/components/Loader";
 const RequestedFriendList = dynamic(
   () => import("@/components/RequestedFriendList")
 );
-// import RequestedFriendList from "@/components/RequestedFriendList";
 import { useCurrentProfile, useRequestedFriendships } from "@/hooks";
 const MainLayout = dynamic(() => import("@/layouts/MainLayout"));
-// import MainLayout from "@/layouts/MainLayout";
 import React from "react";
 const RequestedFriend: React.FC = () => {
   const { profile, loadingProfile } = useCurrentProfile();

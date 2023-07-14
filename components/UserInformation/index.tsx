@@ -27,9 +27,19 @@ const UserInformation: React.FC<Props> = ({
   const getContentSection = () => {
     switch (paramValue) {
       case "posts":
-        return <UserPosts user={user} />;
+        return (
+          <UserPosts
+            user={user}
+            showCreatePostSection={showUpdateProfileButton}
+          />
+        );
       case "":
-        return <UserPosts user={user} />;
+        return (
+          <UserPosts
+            user={user}
+            showCreatePostSection={showUpdateProfileButton}
+          />
+        );
       case "about":
         return <AboutUser user={user} />;
       case "friends":

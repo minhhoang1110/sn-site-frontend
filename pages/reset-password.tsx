@@ -4,7 +4,6 @@ import DocumentHead from "@/components/DocumentHead";
 import Modal from "@/components/Modal";
 import TextField from "@/components/TextField";
 import { ForgotPasswordRequestBody } from "@/types/DataObject";
-import Link from "next/link";
 import { useRouter } from "next/router";
 import React, { useState } from "react";
 const ResetPassword: React.FC = () => {

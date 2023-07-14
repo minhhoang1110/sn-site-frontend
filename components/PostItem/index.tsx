@@ -8,10 +8,12 @@ import moment from "moment";
 import { DateTimeFormat } from "@/configs/constants";
 import Button from "../Button";
 import CreatePostModal from "../CreatePostModal";
-import { useAuthentication, useCurrentProfile, usePost } from "@/hooks";
-import { LikeAPI } from "@/api";
+import { useAuthentication, useCurrentProfile } from "@/hooks";
+import { LikeAPI, PostAPI } from "@/api";
 import { getAvatarPlaceholder } from "@/helper/componentData";
 import Link from "next/link";
+import PostItemOption from "./PostItemOption";
+import Modal from "../Modal";
 interface Props {
   post: Post | null;
   canUpdatePost: boolean;
@@ -39,6 +41,8 @@ const PostItem: React.FC<Props> = ({
   const { profile, loadingProfile } = useCurrentProfile();
   const { session } = useAuthentication();
   const [openUpdateModal, setOpenUpdateModal] = useState<boolean>(false);
+  const [openDeleteModal, setOpenDeleteModal] = useState<boolean>(false);
+  const [openDeletingModal, setOpenDeletingModal] = useState<boolean>(false);
   const [currentLike, setCurrentLike] = useState<LikeObj | null>(null);
   const getProfileHref = () => {
     if (!post || !session || !session.user) return "/profile";
@@ -106,6 +110,21 @@ const PostItem: React.FC<Props> = ({
       })
       .catch((error) => {});
   };
+  const handleOnDeletePost = () => {
+    if (!session || !session.accessToken || !post) return;
+    setOpenDeletingModal(true);
+    PostAPI.deletePost(post.id, session.accessToken)
+      .then((res) => {
+        if (res.data.success) {
+          loadPosts();
+        }
+        setTimeout(() => {
+          setOpenDeletingModal(false);
+          setOpenDeleteModal(false);
+        }, 2000);
+      })
+      .catch((error) => {});
+  };
   const handleCommentButton = () => {
     setSelectedPost && setSelectedPost(post);
     setOpenPostDetailModal && setOpenPostDetailModal(true);
@@ -145,14 +164,10 @@ const PostItem: React.FC<Props> = ({
           </div>
         </div>
         {canUpdatePost && (
-          <div
-            className="cursor-pointer"
-            onClick={() => setOpenUpdateModal(true)}
-          >
-            <Tooltip placement="bottom" text="Chỉnh sửa bài viết">
-              <Icon icon="pencil-square" />
-            </Tooltip>
-          </div>
+          <PostItemOption
+            handleUpdatePost={() => setOpenUpdateModal(true)}
+            handleDeletePost={() => setOpenDeleteModal(true)}
+          />
         )}
       </div>
       <div className="text-2xl my-2 whitespace-pre-line">
@@ -208,6 +223,23 @@ const PostItem: React.FC<Props> = ({
         setOpen={setOpenUpdateModal}
         user={profile}
         post={post || undefined}
+      />
+      <Modal
+        content="Bạn chắc chắn muốn xoá bài viết?"
+        fontSize="lg"
+        hasFooter={true}
+        open={openDeleteModal}
+        setOpen={setOpenDeleteModal}
+        textAlign="center"
+        handleConfirm={handleOnDeletePost}
+      />
+      <Modal
+        content="Đang xoá bài viết"
+        fontSize="base"
+        hasFooter={false}
+        open={openDeletingModal}
+        setOpen={setOpenDeletingModal}
+        textAlign="center"
       />
     </div>
   );

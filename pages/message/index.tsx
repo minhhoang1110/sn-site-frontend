@@ -3,7 +3,6 @@ import DocumentHead from "@/components/DocumentHead";
 import Loader from "@/components/Loader";
 import { useCurrentProfile, useWindowResize } from "@/hooks";
 const MessageLayout = dynamic(() => import("@/layouts/MessageLayout"));
-// import MessageLayout from "@/layouts/MessageLayout";
 import React, { useEffect, useState } from "react";
 const Message: React.FC = () => {
   const { profile, loadingProfile } = useCurrentProfile();

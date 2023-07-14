@@ -7,7 +7,6 @@ import TextField from "../TextField";
 import Icon from "@/icons";
 import ListRoomChat from "../ListRoomChat";
 import { ChatAPI, UserAPI } from "@/api";
-import Link from "next/link";
 import { getAvatarPlaceholder } from "@/helper/componentData";
 import Avatar from "../Avatar";
 import { useRouter } from "next/router";

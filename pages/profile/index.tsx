@@ -2,11 +2,8 @@ import dynamic from "next/dynamic";
 import DocumentHead from "@/components/DocumentHead";
 import Loader from "@/components/Loader";
 const UserInformation = dynamic(() => import("@/components/UserInformation"));
-// import UserInformation from "@/components/UserInformation";
-// import { FriendshipStateFriend } from "@/configs/constants";
 import { useCurrentProfile } from "@/hooks";
 const MainLayout = dynamic(() => import("@/layouts/MainLayout"));
-// import MainLayout from "@/layouts/MainLayout";
 import React from "react";
 const MyProfile: React.FC = () => {
   const { profile, loadingProfile } = useCurrentProfile();

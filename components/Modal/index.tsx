@@ -1,4 +1,4 @@
-import React, { Fragment, useRef, useState } from "react";
+import React, { Fragment, useRef } from "react";
 import { Dialog, Transition } from "@headlessui/react";
 interface Props {
   open: boolean;
@@ -9,6 +9,7 @@ interface Props {
   textAlign: "left" | "center" | "right";
   fontSize: "base" | "lg" | "xl" | "sm" | "xs";
   boldText?: boolean;
+  handleConfirm?: any;
 }
 const Modal: React.FC<Props> = ({
   open,
@@ -19,6 +20,7 @@ const Modal: React.FC<Props> = ({
   textAlign,
   fontSize,
   boldText,
+  handleConfirm,
 }) => {
   const cancelButtonRef = useRef(null);
   return (
@@ -81,7 +83,7 @@ const Modal: React.FC<Props> = ({
                     <button
                       type="button"
                       className="inline-flex w-full justify-center rounded-md bg-red-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-red-500 sm:ml-3 sm:w-auto"
-                      onClick={() => setOpen(false)}
+                      onClick={handleConfirm}
                     >
                       Xác nhận
                     </button>

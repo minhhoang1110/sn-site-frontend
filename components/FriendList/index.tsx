@@ -1,5 +1,5 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import { useAuthentication, useFriendships } from "@/hooks";
+import { useFriendships } from "@/hooks";
 import React, { useEffect } from "react";
 import Loader from "../Loader";
 import Link from "next/link";

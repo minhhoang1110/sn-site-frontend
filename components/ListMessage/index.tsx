@@ -1,12 +1,12 @@
 import { useMessages } from "@/hooks";
-import React, { useEffect, useState } from "react";
+import React from "react";
 import MessageItem from "../MessageItem";
 interface Props {
   roomChatId: number;
   checkImage?: boolean;
 }
 const ListMessage: React.FC<Props> = ({ roomChatId, checkImage }) => {
-  const { messages, messagesLoading, loadMessages } = useMessages(roomChatId);
+  const { messages, messagesLoading } = useMessages(roomChatId);
   if (messagesLoading)
     return (
       <div

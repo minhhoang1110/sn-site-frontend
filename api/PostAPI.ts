@@ -44,5 +44,21 @@ const getListPost = (params: ListPostParams, token: string) => {
   };
   return axios.request(option);
 };
-const PostAPI = { createPost, getListPost, updatePost, getPostDetail };
+const deletePost = (id: number, token: string) => {
+  const option: AxiosRequestConfig = {
+    method: "DELETE",
+    url: `${process.env.NEXT_PUBLIC_API_URI}/post/${id}`,
+    headers: {
+      Authorization: token,
+    },
+  };
+  return axios.request(option);
+};
+const PostAPI = {
+  createPost,
+  getListPost,
+  updatePost,
+  getPostDetail,
+  deletePost,
+};
 export default PostAPI;
