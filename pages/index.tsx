@@ -1,9 +1,10 @@
-import CreatePost from "@/components/CreatePost";
+import dynamic from "next/dynamic";
+const CreatePost = dynamic(() => import("@/components/CreatePost"));
+const ListPost = dynamic(() => import("@/components/ListPost"));
 import DocumentHead from "@/components/DocumentHead";
-import ListPost from "@/components/ListPost";
-import Loader from "@/components/Loader";
+import Loader from "@/components/commons/Loader";
 import { useCurrentProfile } from "@/hooks";
-import MainLayout from "@/layouts/MainLayout";
+const MainLayout = dynamic(() => import("@/layouts/MainLayout"));
 import React from "react";
 const Home: React.FC = () => {
   const { profile, loadingProfile } = useCurrentProfile();

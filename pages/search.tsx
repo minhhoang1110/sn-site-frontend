@@ -1,8 +1,8 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import { UserAPI } from "@/api";
-import Avatar from "@/components/Avatar";
+import Avatar from "@/components/commons/Avatar";
 import DocumentHead from "@/components/DocumentHead";
-import TextField from "@/components/TextField";
+import TextField from "@/components/commons/TextField";
 import { getAvatarPlaceholder } from "@/helper/componentData";
 import { useAuthentication } from "@/hooks";
 import Icon from "@/icons";

@@ -25,7 +25,7 @@ const useCurrentProfile = () => {
         setLoadingProfile(true);
       });
   };
-  useEffect(() => loadProfile(), [session]);
+  useEffect(() => loadProfile(), [session, session?.accessToken]);
   return {
     profile,
     setProfile,

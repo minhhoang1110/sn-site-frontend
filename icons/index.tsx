@@ -18,6 +18,8 @@ import Photo from "./Photo";
 import PaperAirPlane from "./PaperAirPlane";
 import XCircle from "./XCircle";
 import Bell from "./Bell";
+import Trash from "./Trash";
+import EllipsisVertical from "./EllipsisVertical";
 interface Props {
   icon: string;
 }
@@ -61,6 +63,10 @@ const Icon: React.FC<Props> = ({ icon }) => {
       return <XCircle />;
     case "bell":
       return <Bell />;
+    case "trash":
+      return <Trash />;
+    case "ellipsis-vertical":
+      return <EllipsisVertical />;
     default:
       return <></>;
   }

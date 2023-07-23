@@ -1,6 +1,6 @@
 import { User } from "@/types/DataObject";
 import React from "react";
-import TextField from "../TextField";
+import TextField from "../commons/TextField";
 import Link from "next/link";
 import FriendList from "../FriendList";
 interface Props {

@@ -1,6 +1,6 @@
 import ChangePassword from "@/components/ChangePassword";
 import DocumentHead from "@/components/DocumentHead";
-import Loader from "@/components/Loader";
+import Loader from "@/components/commons/Loader";
 import UserSetting from "@/components/UserSetting";
 import { useCurrentProfile } from "@/hooks";
 import MainLayout from "@/layouts/MainLayout";

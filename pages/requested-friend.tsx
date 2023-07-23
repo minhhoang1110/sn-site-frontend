@@ -1,8 +1,11 @@
+import dynamic from "next/dynamic";
 import DocumentHead from "@/components/DocumentHead";
-import Loader from "@/components/Loader";
-import RequestedFriendList from "@/components/RequestedFriendList";
+import Loader from "@/components/commons/Loader";
+const RequestedFriendList = dynamic(
+  () => import("@/components/RequestedFriendList")
+);
 import { useCurrentProfile, useRequestedFriendships } from "@/hooks";
-import MainLayout from "@/layouts/MainLayout";
+const MainLayout = dynamic(() => import("@/layouts/MainLayout"));
 import React from "react";
 const RequestedFriend: React.FC = () => {
   const { profile, loadingProfile } = useCurrentProfile();

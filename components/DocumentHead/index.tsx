@@ -12,7 +12,7 @@ const DocumentHead: React.FC<Props> = ({ title }) => {
         content="Social Network Site Personal Project. Be inspired by Facebook"
       />
       <meta
-        http-equiv="Content-Security-Policy"
+        httpEquiv="Content-Security-Policy"
         content="upgrade-insecure-requests"
       ></meta>
       <meta name="viewport" content="width=device-width, initial-scale=1" />

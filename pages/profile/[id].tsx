@@ -1,10 +1,10 @@
 /* eslint-disable react-hooks/exhaustive-deps */
+import dynamic from "next/dynamic";
 import DocumentHead from "@/components/DocumentHead";
-import Loader from "@/components/Loader";
-import UserInformation from "@/components/UserInformation";
-import { FriendshipStateFriend } from "@/configs/constants";
+import Loader from "@/components/commons/Loader";
+const UserInformation = dynamic(() => import("@/components/UserInformation"));
 import { useCurrentProfile, useFriendship, useUser } from "@/hooks";
-import MainLayout from "@/layouts/MainLayout";
+const MainLayout = dynamic(() => import("@/layouts/MainLayout"));
 import { useRouter } from "next/router";
 import React, { useEffect } from "react";
 const UserProfile: React.FC = () => {

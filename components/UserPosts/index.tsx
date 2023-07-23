@@ -4,12 +4,13 @@ import CreatePost from "../CreatePost";
 import ListPost from "../ListPost";
 interface Props {
   user: User | null;
+  showCreatePostSection: boolean;
 }
-const UserPosts: React.FC<Props> = ({ user }) => {
+const UserPosts: React.FC<Props> = ({ user, showCreatePostSection }) => {
   if (!user) return <></>;
   return (
     <div>
-      <CreatePost user={user} />
+      {showCreatePostSection && <CreatePost user={user} />}
       <ListPost userId={user.id} />
     </div>
   );

@@ -1,7 +1,7 @@
 /* eslint-disable react/display-name */
 import { DateFormat } from "@/configs/constants";
 import { DatePicker } from "@mui/x-date-pickers";
-import React, { forwardRef, useState } from "react";
+import React, { useState } from "react";
 import { LocalizationProvider } from "@mui/x-date-pickers";
 import { AdapterMoment } from "@mui/x-date-pickers/AdapterMoment";
 import moment, { Moment } from "moment";

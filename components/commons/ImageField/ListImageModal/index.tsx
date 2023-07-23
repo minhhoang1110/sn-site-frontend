@@ -2,7 +2,6 @@
 import { useFiles } from "@/hooks";
 import Icon from "@/icons";
 import { Dialog, Transition } from "@headlessui/react";
-import Image from "next/image";
 import React, { Fragment, useEffect, useRef } from "react";
 interface Props {
   open: boolean;

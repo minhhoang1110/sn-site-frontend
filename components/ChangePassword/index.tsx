@@ -1,10 +1,10 @@
 import { ChangePasswordRequestBody } from "@/types/DataObject";
 import React, { useState } from "react";
-import TextField from "../TextField";
-import Button from "../Button";
+import TextField from "../commons/TextField";
+import Button from "../commons/Button";
 import { useAuthentication } from "@/hooks";
 import { AuthenticationAPI } from "@/api";
-import Modal from "../Modal";
+import Modal from "../commons/Modal";
 import { useRouter } from "next/router";
 const ChangePassword: React.FC = () => {
   const router = useRouter();

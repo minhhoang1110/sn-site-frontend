@@ -5,8 +5,8 @@ import {
   User,
 } from "@/types/DataObject";
 import React, { useState } from "react";
-import Avatar from "../Avatar";
-import Button from "../Button";
+import Avatar from "../commons/Avatar";
+import Button from "../commons/Button";
 import { useRouter } from "next/router";
 import Tabs from "../Tabs";
 import {

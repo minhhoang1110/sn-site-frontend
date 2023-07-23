@@ -3,7 +3,7 @@ import { useAuthentication } from "@/hooks";
 import { Message } from "@/types/DataObject";
 import moment from "moment";
 import React from "react";
-import Avatar from "../Avatar";
+import Avatar from "../commons/Avatar";
 import { getAvatarPlaceholder } from "@/helper/componentData";
 import { ChatAPI } from "@/api";
 import Link from "next/link";
