@@ -2,7 +2,7 @@
 import dynamic from "next/dynamic";
 const Chat = dynamic(() => import("@/components/Chat"));
 import DocumentHead from "@/components/DocumentHead";
-import Loader from "@/components/Loader";
+import Loader from "@/components/commons/Loader";
 const RoomChatInformation = dynamic(
   () => import("@/components/RoomChatInformation")
 );

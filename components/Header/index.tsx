@@ -1,7 +1,7 @@
 import { User } from "@/types/DataObject";
 import Link from "next/link";
 import React from "react";
-import EditableSearchField from "../EditableSearchField";
+import EditableSearchField from "../commons/EditableSearchField";
 import DropdownMenu from "../DropdownMenu";
 import Icon from "@/icons";
 import Notification from "../Notification";

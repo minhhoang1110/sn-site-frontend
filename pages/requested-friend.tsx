@@ -1,6 +1,6 @@
 import dynamic from "next/dynamic";
 import DocumentHead from "@/components/DocumentHead";
-import Loader from "@/components/Loader";
+import Loader from "@/components/commons/Loader";
 const RequestedFriendList = dynamic(
   () => import("@/components/RequestedFriendList")
 );

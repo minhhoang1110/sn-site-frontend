@@ -1,8 +1,8 @@
 import { AuthenticationAPI } from "@/api";
-import Button from "@/components/Button";
+import Button from "@/components/commons/Button";
 import DocumentHead from "@/components/DocumentHead";
-import Modal from "@/components/Modal";
-import TextField from "@/components/TextField";
+import Modal from "@/components/commons/Modal";
+import TextField from "@/components/commons/TextField";
 import { ForgotPasswordRequestBody } from "@/types/DataObject";
 import { useRouter } from "next/router";
 import React, { useState } from "react";

@@ -1,7 +1,7 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import { usePosts } from "@/hooks";
 import React, { useEffect, useState } from "react";
-import Loader from "../Loader";
+import Loader from "../commons/Loader";
 import PostItem from "../PostItem";
 import { Post } from "@/types/DataObject";
 import PostDetailModal from "../PostDetailModal";

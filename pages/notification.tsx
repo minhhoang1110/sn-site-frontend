@@ -2,7 +2,7 @@ import dynamic from "next/dynamic";
 import { NotificationAPI } from "@/api";
 const ListNotification = dynamic(() => import("@/components/ListNotification"));
 import DocumentHead from "@/components/DocumentHead";
-import Loader from "@/components/Loader";
+import Loader from "@/components/commons/Loader";
 import {
   useAuthentication,
   useCurrentProfile,

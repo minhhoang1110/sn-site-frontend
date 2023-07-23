@@ -1,5 +1,5 @@
 import React from "react";
-import Avatar from "../Avatar";
+import Avatar from "../commons/Avatar";
 import { useUser } from "@/hooks";
 import Link from "next/link";
 import { getAvatarPlaceholder } from "@/helper/componentData";

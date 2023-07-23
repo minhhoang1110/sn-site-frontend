@@ -1,19 +1,19 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import { CreateLikeRequestBody, LikeObj, Post } from "@/types/DataObject";
 import React, { useEffect, useState } from "react";
-import Avatar from "../Avatar";
+import Avatar from "../commons/Avatar";
 import Icon from "@/icons";
 import Tooltip from "../Tooltip";
 import moment from "moment";
 import { DateTimeFormat } from "@/configs/constants";
-import Button from "../Button";
+import Button from "../commons/Button";
 import CreatePostModal from "../CreatePostModal";
 import { useAuthentication, useCurrentProfile } from "@/hooks";
 import { LikeAPI, PostAPI } from "@/api";
 import { getAvatarPlaceholder } from "@/helper/componentData";
 import Link from "next/link";
 import PostItemOption from "./PostItemOption";
-import Modal from "../Modal";
+import Modal from "../commons/Modal";
 interface Props {
   post: Post | null;
   canUpdatePost: boolean;

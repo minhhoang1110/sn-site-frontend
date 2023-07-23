@@ -2,9 +2,9 @@
 import { useAuthentication } from "@/hooks";
 import { Comment, CreateCommentRequestBody, User } from "@/types/DataObject";
 import React, { useEffect, useState } from "react";
-import Avatar from "../Avatar";
-import TextField from "../TextField";
-import Button from "../Button";
+import Avatar from "../commons/Avatar";
+import TextField from "../commons/TextField";
+import Button from "../commons/Button";
 import { CommentAPI } from "@/api";
 import { getAvatarPlaceholder } from "@/helper/componentData";
 interface Props {

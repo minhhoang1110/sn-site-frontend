@@ -1,14 +1,14 @@
 import React, { Fragment, useRef, useState } from "react";
 import { Dialog, Transition } from "@headlessui/react";
-import Button from "../Button";
-import TextField from "../TextField";
-import SingleDatePicker from "../SingleDatePicker";
+import Button from "../commons/Button";
+import TextField from "../commons/TextField";
+import SingleDatePicker from "../commons/SingleDatePicker";
 import { SignupRequestBody, UserWithToken } from "@/types/DataObject";
 import { useDispatch } from "react-redux";
 import { useRouter } from "next/router";
 import { authenticationAction } from "@/actions";
 import { AuthenticationAPI } from "@/api";
-import Modal from "../Modal";
+import Modal from "../commons/Modal";
 interface Props {
   open: boolean;
   setOpen: React.Dispatch<React.SetStateAction<boolean>>;

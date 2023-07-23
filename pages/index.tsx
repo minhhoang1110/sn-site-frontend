@@ -2,7 +2,7 @@ import dynamic from "next/dynamic";
 const CreatePost = dynamic(() => import("@/components/CreatePost"));
 const ListPost = dynamic(() => import("@/components/ListPost"));
 import DocumentHead from "@/components/DocumentHead";
-import Loader from "@/components/Loader";
+import Loader from "@/components/commons/Loader";
 import { useCurrentProfile } from "@/hooks";
 const MainLayout = dynamic(() => import("@/layouts/MainLayout"));
 import React from "react";

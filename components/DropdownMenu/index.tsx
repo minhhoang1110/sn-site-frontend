@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import Avatar from "../Avatar";
+import Avatar from "../commons/Avatar";
 import { User } from "@/types/DataObject";
 import Link from "next/link";
 import Icon from "@/icons";
@@ -7,7 +7,7 @@ import { useDispatch } from "react-redux";
 import { useRouter } from "next/router";
 import { authenticationAction } from "@/actions";
 import { getAvatarPlaceholder } from "@/helper/componentData";
-import Modal from "../Modal";
+import Modal from "../commons/Modal";
 interface Props {
   user: User | null;
 }

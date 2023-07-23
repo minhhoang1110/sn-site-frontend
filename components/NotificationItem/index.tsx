@@ -1,6 +1,6 @@
 import { Notification, User } from "@/types/DataObject";
 import React from "react";
-import Avatar from "../Avatar";
+import Avatar from "../commons/Avatar";
 import { getAvatarPlaceholder } from "@/helper/componentData";
 import moment from "moment";
 import {

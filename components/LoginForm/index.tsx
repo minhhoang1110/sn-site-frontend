@@ -1,11 +1,11 @@
 import React, { useState } from "react";
-import TextField from "../TextField";
+import TextField from "../commons/TextField";
 import { useDispatch } from "react-redux";
 import { useRouter } from "next/router";
 import { LoginRequestBody, UserWithToken } from "@/types/DataObject";
 import { AuthenticationAPI } from "@/api";
 import { authenticationAction } from "@/actions";
-import Button from "../Button";
+import Button from "../commons/Button";
 import Link from "next/link";
 interface Props {
   setIsSubmit: React.Dispatch<React.SetStateAction<boolean>>;

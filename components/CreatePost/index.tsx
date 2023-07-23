@@ -1,7 +1,7 @@
 import React, { useState } from "react";
-import Avatar from "../Avatar";
+import Avatar from "../commons/Avatar";
 import { User } from "@/types/DataObject";
-import TextField from "../TextField";
+import TextField from "../commons/TextField";
 import CreatePostModal from "../CreatePostModal";
 import { getAvatarPlaceholder } from "@/helper/componentData";
 interface Props {

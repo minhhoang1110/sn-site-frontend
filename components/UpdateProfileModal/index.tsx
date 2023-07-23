@@ -1,15 +1,15 @@
 import { UpdateProfileBody, User } from "@/types/DataObject";
 import { Dialog, Transition } from "@headlessui/react";
 import React, { Fragment, useRef, useState } from "react";
-import Button from "../Button";
-import TextField from "../TextField";
-import SingleDatePicker from "../SingleDatePicker";
+import Button from "../commons/Button";
+import TextField from "../commons/TextField";
+import SingleDatePicker from "../commons/SingleDatePicker";
 import { UserAPI } from "@/api";
 import { useAuthentication } from "@/hooks";
-import Modal from "../Modal";
+import Modal from "../commons/Modal";
 import { useRouter } from "next/router";
 import Icon from "@/icons";
-import ImageField from "../ImageField";
+import ImageField from "../commons/ImageField";
 import { ObjectTypeUserAvatar, ObjectTypeUserCover } from "@/configs/constants";
 interface Props {
   user: User | null;

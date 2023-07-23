@@ -1,15 +1,15 @@
 import { User } from "@/types/DataObject";
 import React, { useState } from "react";
-import Avatar from "../Avatar";
+import Avatar from "../commons/Avatar";
 import Tooltip from "../Tooltip";
 import Icon from "@/icons";
-import TextField from "../TextField";
-import Button from "../Button";
+import TextField from "../commons/TextField";
+import Button from "../commons/Button";
 import moment from "moment";
 import { DateTimeFormat } from "@/configs/constants";
 import { useAuthentication } from "@/hooks";
 import { AuthenticationAPI, UserAPI } from "@/api";
-import Modal from "../Modal";
+import Modal from "../commons/Modal";
 import { useRouter } from "next/router";
 import { getAvatarPlaceholder } from "@/helper/componentData";
 interface Props {

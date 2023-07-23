@@ -1,6 +1,6 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect, useState } from "react";
-import Avatar from "../Avatar";
+import Avatar from "../commons/Avatar";
 import Icon from "@/icons";
 import { CreateMessageRequestBody, RoomChat } from "@/types/DataObject";
 import { useAuthentication, useUser } from "@/hooks";
@@ -8,11 +8,11 @@ import {
   getAvatarPlaceholder,
   getRoomChatUserId,
 } from "@/helper/componentData";
-import TextField from "../TextField";
+import TextField from "../commons/TextField";
 import ListMessage from "../ListMessage";
 import { ChatAPI } from "@/api";
 import Link from "next/link";
-import ImageField from "../ImageField";
+import ImageField from "../commons/ImageField";
 import { ObjectTypeMessage } from "@/configs/constants";
 interface Props {
   roomChat: RoomChat | null;

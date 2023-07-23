@@ -1,9 +1,9 @@
 import { CreateFriendshipBody, Friendship } from "@/types/DataObject";
 import React from "react";
-import Avatar from "../Avatar";
+import Avatar from "../commons/Avatar";
 import moment from "moment";
 import { DateTimeFormat, FriendshipStateFriend } from "@/configs/constants";
-import Button from "../Button";
+import Button from "../commons/Button";
 import { useAuthentication } from "@/hooks";
 import { FriendshipAPI } from "@/api";
 import { useRouter } from "next/router";

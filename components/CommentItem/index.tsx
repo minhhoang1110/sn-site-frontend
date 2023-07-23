@@ -1,6 +1,6 @@
 import { Comment, User } from "@/types/DataObject";
 import React from "react";
-import Avatar from "../Avatar";
+import Avatar from "../commons/Avatar";
 import moment from "moment";
 import { DateTimeFormat } from "@/configs/constants";
 import { useAuthentication } from "@/hooks";

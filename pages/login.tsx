@@ -1,7 +1,7 @@
 import dynamic from "next/dynamic";
 import DocumentHead from "@/components/DocumentHead";
 const LoginForm = dynamic(() => import("@/components/LoginForm"));
-const Modal = dynamic(() => import("@/components/Modal"));
+const Modal = dynamic(() => import("@/components/commons/Modal"));
 const Signup = dynamic(() => import("@/components/Signup"));
 import React, { useState } from "react";
 const Login: React.FC = () => {

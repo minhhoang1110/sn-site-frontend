@@ -1,17 +1,17 @@
 import { CreatePostRequestBody, Post, User } from "@/types/DataObject";
 import { Dialog, Transition } from "@headlessui/react";
 import React, { Fragment, useRef, useState } from "react";
-import Avatar from "../Avatar";
-import Button from "../Button";
-import TextAreaField from "../TextAreaField";
-import SelectField from "../SelectField";
+import Avatar from "../commons/Avatar";
+import Button from "../commons/Button";
+import TextAreaField from "../commons/TextAreaField";
+import SelectField from "../commons/SelectField";
 import { ObjectTypePost, POST_SHARED_TYPE_OPTION } from "@/configs/constants";
 import { PostAPI } from "@/api";
 import { useAuthentication } from "@/hooks";
-import Modal from "../Modal";
+import Modal from "../commons/Modal";
 import { useRouter } from "next/router";
 import { getAvatarPlaceholder } from "@/helper/componentData";
-import ImageField from "../ImageField";
+import ImageField from "../commons/ImageField";
 import Icon from "@/icons";
 interface Props {
   open: boolean;

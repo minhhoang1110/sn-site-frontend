@@ -1,10 +1,10 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import { useFriendships } from "@/hooks";
 import React, { useEffect } from "react";
-import Loader from "../Loader";
+import Loader from "../commons/Loader";
 import Link from "next/link";
 import { Friendship, User } from "@/types/DataObject";
-import Avatar from "../Avatar";
+import Avatar from "../commons/Avatar";
 import { getAvatarPlaceholder } from "@/helper/componentData";
 interface Props {
   user: User | null;

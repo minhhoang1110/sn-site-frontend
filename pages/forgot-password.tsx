@@ -1,8 +1,8 @@
 import { AuthenticationAPI } from "@/api";
-import Button from "@/components/Button";
+import Button from "@/components/commons/Button";
 import DocumentHead from "@/components/DocumentHead";
-import Modal from "@/components/Modal";
-import TextField from "@/components/TextField";
+import Modal from "@/components/commons/Modal";
+import TextField from "@/components/commons/TextField";
 import { ReqForgotPasswordRequest } from "@/types/DataObject";
 import Link from "next/link";
 import { useRouter } from "next/router";

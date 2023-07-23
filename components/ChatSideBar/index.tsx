@@ -3,12 +3,12 @@ import { useAuthentication, useRoomChats } from "@/hooks";
 import { CreateRoomChatRequestBody, User } from "@/types/DataObject";
 import { SearchObj } from "@/types/common";
 import React, { useEffect, useState } from "react";
-import TextField from "../TextField";
+import TextField from "../commons/TextField";
 import Icon from "@/icons";
 import ListRoomChat from "../ListRoomChat";
 import { ChatAPI, UserAPI } from "@/api";
 import { getAvatarPlaceholder } from "@/helper/componentData";
-import Avatar from "../Avatar";
+import Avatar from "../commons/Avatar";
 import { useRouter } from "next/router";
 import { RoomChatTypeDefault } from "@/configs/constants";
 interface Props {
