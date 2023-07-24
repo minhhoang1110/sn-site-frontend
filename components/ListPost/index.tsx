@@ -30,9 +30,9 @@ const ListPost: React.FC<Props> = ({ userId = "" }) => {
     <div className="w-full py-3">
       {posts.length > 0 && (
         <>
-          {posts.map((post, index) => (
+          {posts.map((post) => (
             <PostItem
-              key={index}
+              key={`post-item-${post.id}`}
               post={post}
               canUpdatePost={post.userId === userId}
               loadPosts={loadPosts}
